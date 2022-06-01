@@ -37,6 +37,7 @@ public class appcontroller {
   public String home3(@ModelAttribute User user,BindingResult bind,HttpServletRequest request)
   
   {userser.saveuser(user);
+  System.out.println(user);
 	  request.setAttribute("mode", "mode_home");
 	  return "welcome";
   }
@@ -68,18 +69,25 @@ public class appcontroller {
 	  return "welcome";
   }
   @RequestMapping("/loginuser")
-  public String h3(@ModelAttribute User user,HttpServletRequest request)
+  public String h3(@ModelAttribute() User user,BindingResult bind,HttpServletRequest request)
   {
 	  if(userser.findByUsernamendPassword(user.getUsername(), user.getPassword())!=null) {
-		  System.out.println("hi");
-			return "home";
+		  System.out.println(userser.findByUsernamendPassword(user.getUsername(), user.getPassword()));
+			return "welcome";
 		}
 	  else
 	  {
+		  
 		  request.setAttribute("error", "Invalid,Username Or Password");
 		  request.setAttribute("mode", "login-user");
+//		  System.out.println(user);
+//		  System.out.println(userser.findByUsernamendPassword(user.getUsername(), user.getPassword()));
+//		  request.setAttribute("mode", "mode_home");
+		  return "welcome";
 	  }
-	 return "welcome";
+	
   }
+ 
+  
 	
 }

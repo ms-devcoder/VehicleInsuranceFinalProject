@@ -38,10 +38,8 @@
 			</div>
 		</div>
 	</div> -->
-<c:choose>
-<c:when test="${mode=='mode_home'}">
 
-	<div id="main-container">
+<div id="main-container">
         <div class="left">
             <div class="left-cont2">
                 <div class="flex" >
@@ -54,11 +52,14 @@
                 </div>
             </div>
         </div>
-        
+
+	
+        <c:choose>
+        <c:when test="${mode=='mode_home'}">
         <div class="right">
             <div class="right-cont1">
                     <div class="form1">
-                        <form action="validation.php" class="register-form" method="POST">
+                        <form action="save-user" class="register-form" method="POST">
                             <div class="upper1">
                                 Sign up
                             </div>
@@ -69,21 +70,21 @@
 								<option value ="Field Officer">Field Officer</option>
 							</select>
 							<br/>
-							
-							<input type="text" class="input-icon" placeholder="User Id" name="Fname" id="fname"  style="margin-right: 13%;" required>
-							<input type="password" class="input-icon" id="pass_log_id"  placeholder="&#xf023;    Password" name="password" required><br>
-							<input type="text" name="fname" class="input-icon" placeholder="&#xf007;    First Name" style="margin-right:13%;"/>
-							<input type="text" name="lname" class="input-icon" placeholder="&#xf007;    Last Name"/><br/>
-							<input placeholder="Date of Birth" class="input-icon" class="textbox-n" type="text" onfocus="(this.type='date')" id="date" style="margin-right: 13%;"/>
+							<input type="hidden" name="id" path="${user.id}" />
+							<input type="text" class="input-icon" placeholder="User Id" name="username" path="${user.username}" id="fname"  style="margin-right: 13%;" required>
+							<input type="text" class="input-icon" id="pass_log_id"  placeholder="&#xf023;    Password" name="password" path="${user.password}" required><br>
+							<input type="text" name="firstname" path="${user.firstname}" class="input-icon" placeholder="&#xf007;    First Name" style="margin-right:13%;"/>
+							<input type="text" name="lastname" path="${user.lastname}" class="input-icon" placeholder="&#xf007;    Last Name"/><br/>
+							<input placeholder="Date of Birth" class="input-icon" class="textbox-n" type="text" name="dob" value="${user.dob}" onfocus="(this.type='date')" id="date" style="margin-right: 13%;"/>
 							<label for="Gender"class="input-icon" style="margin-right: 1%;">Gender:</label>
-							<input type="radio" name="gender" value="Male" id="male"style="margin-right: 1%;"/>Male
-							<input type="radio" name="gender" value="Female" id="female" style="margin-left: 4%;margin-right: 1%;"/>Female
+							<input type="radio" name="gender" path="${user.gender}" value="male" id="male"style="margin-right: 1%;"/>Male
+							<input type="radio" name="gender" path="${user.gender}" value="female"id="female" style="margin-left: 4%;margin-right: 1%;"/>Female
 							<br>
-                            <input type="tel" class="input-icon" id="phone" name="phone" placeholder="&#xf095;    123-45-678" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"  style="margin-right: 13%;" required>
-							<input type="text" class="input-icon" placeholder="Liscence Number" name="l_num" id="l_num" required>
-							<input type="email"class="input-icon" placeholder="&#xf0e0;    Work email" name="email" style="width: 91%;margin-bottom: 4%;" required><br>
+                            <input type="text" path="${user.mblnumber}" class="input-icon" id="phone" name="mblnumber" placeholder="&#xf095;    123-45-678" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"  style="margin-right: 13%;" required>
+							<input type="text" path="${user.lnumber}"class="input-icon" placeholder="Liscence Number" name="lnumber" id="l_num" required>
+							<input type="email" path="${user.email}"class="input-icon" placeholder="&#xf0e0;    Work email" name="email" style="width: 91%;margin-bottom: 4%;" required><br>
 							
-							<select id="designation" class="input-icon" style="margin-right: 10%;" required>
+							<select id="designation" class="input-icon" style="margin-right: 8%;" required>
 								<option value="" disabled selected>Designation</option>
 								<option value="Junior Officer">Junior Officer</option>
 								<option value="Officer">Officer</option>
@@ -100,33 +101,74 @@
 							</select>
                             <input type="submit" name="submit" class="sub" value="Get started now">
                             <h4 class="message" style="margin-left: 2%;margin-top: 7%; color: gray;
-                        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Existing User? <span><a href="#" style="text-decoration: none;">Log in</a></span></h4>
+                        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Existing User? <span><a href="login" style="text-decoration: none;">Log in</a></span></h4>
                         </form>
 
-                        <form action="logged.php" class="Login-form" method="POST" style="margin-top: 25%;">
+            
+        </div>
+        </div>
+    </div>
+    </c:when>
+    <c:when test="${mode=='login-user'}">
+<!--      <div class="right"> -->
+<!--             <div class="right-cont1"> -->
+<!--                     <div class="form1"> -->
+
+<!--                         <form action="loginuser" class="Login-form" method="POST" style="margin-top: 25%;"> -->
+<!--                             <div class="upper2"> -->
+<!--                                 Log in -->
+<!--                             </div> -->
+<!--                             <input path="username" type="text" class="input-icon" placeholder="&#xf0e0;    Work email" name="email" style="width: 100%;" required> -->
+<!--                             <span toggle="#password-field" class="fa fa-fw fa-eye field_icon toggle-password"></span><br/> -->
+<!--                             <input path="password" type="password" id="pass_log_id" class="input-icon" placeholder="&#xf023;    Password" name="password" style="width: 100%;" required> -->
+<!--                             <label style="font-family:  'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;"> -->
+<!--                             </label> -->
+<!--                             <input type="submit" name="submit" class="sub" value="Log in"> -->
+<!--                             <h4 class="message" style="margin-left: 2%;margin-top: 7%; color: gray; -->
+<!--                         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Not Registered? <span><a href="#" style="text-decoration: none;">Register</a></span></h4> -->
+<!--                         </form> -->
+
+                        
+<!--                     </div> -->
+                   
+<!--             </div> -->
+            
+<!--         </div> -->
+<!--     </div> -->
+ <div class="right">
+            <div class="right-cont1">
+                    <div class="form1">
+                      
+
+                        <form action="loginuser"  method="POST" style="margin-top: 25%;">
+                       
                             <div class="upper2">
                                 Log in
                             </div>
-                            <input type="email" class="input-icon" placeholder="&#xf0e0;    Work email" name="email" style="width: 100%;" required>
+                            
+                             <c:if test="${not empty error }"> 
+						<div class= "alert alert-danger">
+							<c:out value="${error }"></c:out>
+							</div>
+					</c:if>
+                            <input  type="text" class="input-icon" placeholder="&#xf0e0;    Work email" name="username" path="${user.username }"style="width: 100%;" required>
                             <span toggle="#password-field" class="fa fa-fw fa-eye field_icon toggle-password"></span><br/>
-                            <input type="password" id="pass_log_id" class="input-icon" placeholder="&#xf023;    Password" name="password" style="width: 100%;" required>
+                            <input type="text" id="pass_log_id" class="input-icon" placeholder="&#xf023;    Password" name="password" path="${user.password}" style="width: 100%;" required>
                             <label style="font-family:  'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
                             </label>
                             <input type="submit" name="submit" class="sub" value="Log in">
                             <h4 class="message" style="margin-left: 2%;margin-top: 7%; color: gray;
-                        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Not Registered? <span><a href="#" style="text-decoration: none;">Register</a></span></h4>
+                         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Not Registered? <span><a href="welcome" style="text-decoration: none;">Register</a></span></h4>
                         </form>
-
+                    
                         
-                    </div>
-            </div>
+
             
         </div>
+        </div>
     </div>
-
-
-
-
+</c:when>
+</c:choose>
 
 
 	<!-- <div class="container" id="homediv">
@@ -135,170 +177,172 @@
 					<h3>Subscribe my channel to support me</h3>
 				</div>
 			</div> -->
-			</c:when>
-			<c:when test="${mode=='mode_register'}">
-	<div class="container text-center">
-				<h3>New Registration</h3>
-				<hr>
-				<form class="form-horizontal" method="POST" action="save-user">
-					<input type="hidden" name="id" value="${user.id }" />
-					<div class="form-group">
-						<label class="control-label col-md-3">Username</label>
-						<div class="col-md-7">
-							<input type="text" class="form-control" name="username"
-								value="${user.username }" />
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="control-label col-md-3">First Name</label>
-						<div class="col-md-7">
-							<input type="text" class="form-control" name="firstname"
-								value="${user.firstname }" />
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="control-label col-md-3">Last Name</label>
-						<div class="col-md-7">
-							<input type="text" class="form-control" name="lastname"
-								value="${user.lastname }" />
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="control-label col-md-3">Age </label>
-						<div class="col-md-3">
-							<input type="text" class="form-control" name="age"
-								value="${user.age }" />
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="control-label col-md-3">Password</label>
-						<div class="col-md-7">
-							<input type="password" class="form-control" name="password"
-								value="${user.password }" />
-						</div>
-					</div>
-					<div class="form-group ">
-						<input type="submit" class="btn btn-primary" value="Register" />
-					</div>
-				</form>
-			</div>
-			</c:when>
-			<c:when test="${mode=='show-users'}">
-			<div class="container text-center" id="tasksDiv">
-				<h3>All Users</h3>
-				<hr>
-				<div class="table-responsive">
-					<table class="table table-striped table-bordered">
-						<thead>
-							<tr>
-								<th>Id</th>
-								<th>UserName</th>
-								<th>First Name</th>
-								<th>LastName</th>
-								<th>Age</th>
-								<th>Delete</th>
-								<th>Edit</th>
-							</tr>
-						</thead>
-						<tbody>
-							<c:forEach var="user" items="${users }">
-								<tr>
-									<td>${user.id}</td>
-									<td>${user.username}</td>
-									<td>${user.firstname}</td>
-									<td>${user.lastname}</td>
-									<td>${user.age}</td>
-									<td><a href="/delete-user?id=${user.id }"><span
-											class="glyphicon glyphicon-trash"></span></a></td>
-									<td><a href="/edit-user?id=${user.id }"><span
-											class="glyphicon glyphicon-pencil"></span></a></td>
-								</tr>
-							</c:forEach>
-						</tbody>
-					</table>
-				</div>
-			</div>
-			</c:when>
-			<c:when test="${mode=='mode_update'}">
-	<div class="container text-center">
-				<h3>Update User</h3>
-				<hr>
-				<form class="form-horizontal" method="POST" action="save-user">
-					<input type="hidden" name="id" value="${user.id }" />
-					<div class="form-group">
-						<label class="control-label col-md-3">Username</label>
-						<div class="col-md-7">
-							<input type="text" class="form-control" name="username"
-								value="${user.username }" />
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="control-label col-md-3">First Name</label>
-						<div class="col-md-7">
-							<input type="text" class="form-control" name="firstname"
-								value="${user.firstname }" />
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="control-label col-md-3">Last Name</label>
-						<div class="col-md-7">
-							<input type="text" class="form-control" name="lastname"
-								value="${user.lastname }" />
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="control-label col-md-3">Age </label>
-						<div class="col-md-3">
-							<input type="text" class="form-control" name="age"
-								value="${user.age }" />
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="control-label col-md-3">Password</label>
-						<div class="col-md-7">
-							<input type="password" class="form-control" name="password"
-								value="${user.password }" />
-						</div>
-					</div>
-					<div class="form-group ">
-						<input type="submit" class="btn btn-primary" value="Update" />
-					</div>
-				</form>
-			</div>
-			</c:when>
-			<c:when test="${mode=='login-user'}">
-	<div class="container text-center">
-				<h3 >Login Here</h3>
-				<hr>
-				<form class="form-horizontal" method="POST" action="loginuser">
-					<c:if test="${not empty error }">
-						<div class= "alert alert-danger">
-							<c:out value="${error }"></c:out>
-							</div>
-					</c:if>
-					<div class="form-group">
-						<label class="control-label col-md-3">Username</label>
-						<div class="col-md-7">
-							<input type="text" class="form-control" name="username"
-								value="${user.username }" />
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="control-label col-md-3">Password</label>
-						<div class="col-md-7">
-							<input type="password" class="form-control" name="password"
-								value="${user.password }" />
-						</div>
-					</div>
-					<div class="form-group ">
-						<input type="submit" class="btn btn-primary" value="Login" />
-					</div>
-				</form>
-			</div>
-			</c:when>
-	</c:choose>
+<%-- 			</c:when> --%>
+<%-- 			<c:when test="${mode=='mode_register'}"> --%>
+<!-- 	<div class="container text-center"> -->
+<!-- 				<h3>New Registration</h3> -->
+<!-- 				<hr> -->
+<!-- 				<form class="form-horizontal" method="POST" action="save-user"> -->
+<%-- 					<input type="hidden" name="id" value="${user.id }" /> --%>
+<!-- 					<div class="form-group"> -->
+<!-- 						<label class="control-label col-md-3">Username</label> -->
+<!-- 						<div class="col-md-7"> -->
+<!-- 							<input type="text" class="form-control" name="username" -->
+<%-- 								value="${user.username }" /> --%>
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 					<div class="form-group"> -->
+<!-- 						<label class="control-label col-md-3">First Name</label> -->
+<!-- 						<div class="col-md-7"> -->
+<!-- 							<input type="text" class="form-control" name="firstname" -->
+<%-- 								value="${user.firstname }" /> --%>
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 					<div class="form-group"> -->
+<!-- 						<label class="control-label col-md-3">Last Name</label> -->
+<!-- 						<div class="col-md-7"> -->
+<!-- 							<input type="text" class="form-control" name="lastname" -->
+<%-- 								value="${user.lastname }" /> --%>
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 					<div class="form-group"> -->
+<!-- 						<label class="control-label col-md-3">Age </label> -->
+<!-- 						<div class="col-md-3"> -->
+<!-- 							<input type="text" class="form-control" name="age" -->
+<%-- 								value="${user.age }" /> --%>
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 					<div class="form-group"> -->
+<!-- 						<label class="control-label col-md-3">Password</label> -->
+<!-- 						<div class="col-md-7"> -->
+<!-- 							<input type="password" class="form-control" name="password" -->
+<%-- 								value="${user.password }" /> --%>
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 					<div class="form-group "> -->
+<!-- 						<input type="submit" class="btn btn-primary" value="Register" /> -->
+<!-- 					</div> -->
+<!-- 				</form> -->
+<!-- 			</div> -->
+<%-- 			</c:when> --%>
+<%-- 			<c:when test="${mode=='show-users'}"> --%>
+<!-- 			<div class="container text-center" id="tasksDiv"> -->
+<!-- 				<h3>All Users</h3> -->
+<!-- 				<hr> -->
+<!-- 				<div class="table-responsive"> -->
+<!-- 					<table class="table table-striped table-bordered"> -->
+<!-- 						<thead> -->
+<!-- 							<tr> -->
+<!-- 								<th>Id</th> -->
+<!-- 								<th>UserName</th> -->
+<!-- 								<th>First Name</th> -->
+<!-- 								<th>LastName</th> -->
+<!-- 								<th>Age</th> -->
+<!-- 								<th>Delete</th> -->
+<!-- 								<th>Edit</th> -->
+<!-- 							</tr> -->
+<!-- 						</thead> -->
+<!-- 						<tbody> -->
+<%-- 							<c:forEach var="user" items="${users }"> --%>
+<!-- 								<tr> -->
+<%-- 									<td>${user.id}</td> --%>
+<%-- 									<td>${user.username}</td> --%>
+<%-- 									<td>${user.firstname}</td> --%>
+<%-- 									<td>${user.lastname}</td> --%>
+<%-- 									<td>${user.age}</td> --%>
+<%-- 									<td><a href="/delete-user?id=${user.id }"><span --%>
+<!-- 											class="glyphicon glyphicon-trash"></span></a></td> -->
+<%-- 									<td><a href="/edit-user?id=${user.id }"><span --%>
+<!-- 											class="glyphicon glyphicon-pencil"></span></a></td> -->
+<!-- 								</tr> -->
+<%-- 							</c:forEach> --%>
+<!-- 						</tbody> -->
+<!-- 					</table> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<%-- 			</c:when> --%>
+<%-- 			<c:when test="${mode=='mode_update'}"> --%>
+<!-- 	<div class="container text-center"> -->
+<!-- 				<h3>Update User</h3> -->
+<!-- 				<hr> -->
+<!-- 				<form class="form-horizontal" method="POST" action="save-user"> -->
+<%-- 					<input type="hidden" name="id" value="${user.id }" /> --%>
+<!-- 					<div class="form-group"> -->
+<!-- 						<label class="control-label col-md-3">Username</label> -->
+<!-- 						<div class="col-md-7"> -->
+<!-- 							<input type="text" class="form-control" name="username" -->
+<%-- 								value="${user.username }" /> --%>
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 					<div class="form-group"> -->
+<!-- 						<label class="control-label col-md-3">First Name</label> -->
+<!-- 						<div class="col-md-7"> -->
+<!-- 							<input type="text" class="form-control" name="firstname" -->
+<%-- 								value="${user.firstname }" /> --%>
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 					<div class="form-group"> -->
+<!-- 						<label class="control-label col-md-3">Last Name</label> -->
+<!-- 						<div class="col-md-7"> -->
+<!-- 							<input type="text" class="form-control" name="lastname" -->
+<%-- 								value="${user.lastname }" /> --%>
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 					<div class="form-group"> -->
+<!-- 						<label class="control-label col-md-3">Age </label> -->
+<!-- 						<div class="col-md-3"> -->
+<!-- 							<input type="text" class="form-control" name="age" -->
+<%-- 								value="${user.age }" /> --%>
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 					<div class="form-group"> -->
+<!-- 						<label class="control-label col-md-3">Password</label> -->
+<!-- 						<div class="col-md-7"> -->
+<!-- 							<input type="password" class="form-control" name="password" -->
+<%-- 								value="${user.password }" /> --%>
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 					<div class="form-group "> -->
+<!-- 						<input type="submit" class="btn btn-primary" value="Update" /> -->
+<!-- 					</div> -->
+<!-- 				</form> -->
+<!-- 			</div> -->
+<%-- 			</c:when> --%>
+<%-- 			<c:when test="${mode=='login-user'}"> --%>
+<!-- 	<div class="container text-center"> -->
+<!-- 				<h3 >Login Here</h3> -->
+<!-- 				<hr> -->
+<!-- 				<form class="form-horizontal" method="POST" action="loginuser"> -->
+<%-- 					<c:if test="${not empty error }"> --%>
+<!-- 						<div class= "alert alert-danger"> -->
+<%-- 							<c:out value="${error }"></c:out> --%>
+<!-- 							</div> -->
+<%-- 					</c:if> --%>
+<!-- 					<div class="form-group"> -->
+<!-- 						<label class="control-label col-md-3">Username</label> -->
+<!-- 						<div class="col-md-7"> -->
+<!-- 							<input type="text" class="form-control" name="username" -->
+<%-- 								value="${user.username }" /> --%>
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 					<div class="form-group"> -->
+<!-- 						<label class="control-label col-md-3">Password</label> -->
+<!-- 						<div class="col-md-7"> -->
+<!-- 							<input type="password" class="form-control" name="password" -->
+<%-- 								value="${user.password }" /> --%>
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 					<div class="form-group "> -->
+<!-- 						<input type="submit" class="btn btn-primary" value="Login" /> -->
+<!-- 					</div> -->
+<!-- 				</form> -->
+<!-- 			</div> -->
+<%-- 			</c:when> --%>
+<%-- 	</c:choose> --%>
 <!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	
+		
 	<script>
 		$("body").on('click', '.toggle-password', function() {
 		 $(this).toggleClass("fa-eye fa-eye-slash");
@@ -329,9 +373,11 @@
 				document.getElementById("l_num").disabled = true;
 			}
 		} 
+		
 	 </script>
-	<script src="static/js/jquery-1.11.1.min.js"></script>
-	<script src="static/js/bootstrap.min.js"></script>
+	
+<!-- 	<script src="static/js/jquery-1.11.1.min.js"></script> -->
+<!-- 	<script src="static/js/bootstrap.min.js"></script> -->
 	
 </body>
 </html>
