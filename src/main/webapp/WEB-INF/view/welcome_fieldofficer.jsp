@@ -56,11 +56,11 @@
 
 	
         <c:choose>
-        <c:when test="${mode=='mode_policyadminregister'}">
+        <c:when test="${mode=='mode_fieldofficerregister'}">
         <div class="right">
             <div class="right-cont1">
                     <div class="form1">
-                        <form action="policyadminsave-user" class="register-form" method="POST">
+                        <form action="fieldofficersave-user" class="register-form" method="POST">
                             <div class="upper">
                                 Sign up
                             </div>
@@ -96,7 +96,7 @@
 							</select>
                             <input type="submit" name="submit" class="sub" value="Get started now">
                             <h4 class="message" style="margin-left: 2%;margin-top: 7%; color: gray;
-                        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Existing User? <span><a href="policyadminlogin" style="text-decoration: none;">Log in</a></span></h4>
+                        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Existing User? <span><a href="fieldofficerlogin" style="text-decoration: none;">Log in</a></span></h4>
                         </form>
 
             
@@ -104,14 +104,14 @@
         </div>
     </div>
     </c:when>
-    <c:when test="${mode=='mode_policyadminregistered'}">
+    <c:when test="${mode=='mode_fieldofficerregistered'}">
 		<div class="right">
             <div class="right-cont1">
                     <div class="form1">
                       
 
                        
-                            <h1 style="text-decoration: none;">Your PolicyAdmin Registration was succesfully Completed</h1>
+                            <h1 style="text-decoration: none;">Your FieldOfficer Registration was succesfully Completed</h1>
                         
                     <h4 class="message" style="margin-left: 2%;margin-top: 7%; color: gray;
                         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">If registerd? <span><a href="welcome" style="text-decoration: none;">Go to welcome page</a></span></h4>
@@ -122,13 +122,13 @@
         </div>
     </div>
 </c:when>
-    <c:when test="${mode=='mode_policyadminlogin'}">
+    <c:when test="${mode=='mode_fieldofficerlogin'}">
  <div class="right">
             <div class="right-cont1">
                     <div class="form1">
                       
 
-                        <form action="policyadminloginuser"  method="POST" style="margin-top: 25%;">
+                        <form action="fieldofficerloginuser"  method="POST" style="margin-top: 25%;">
                        
                             <div class="upper">
                                 Log in

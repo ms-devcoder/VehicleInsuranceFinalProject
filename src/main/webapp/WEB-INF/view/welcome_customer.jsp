@@ -55,11 +55,11 @@
 
 	
         <c:choose>
-        <c:when test="${mode=='mode_home'}">
+        <c:when test="${mode=='mode_customerregister'}">
         <div class="right">
             <div class="right-cont1">
                     <div class="form1">
-                        <form action="save-user" class="register-form" method="POST">
+                        <form action="customersave-user" class="register-form" method="POST">
                             <div class="upper1">
                                 Sign up
                             </div>
@@ -69,18 +69,18 @@
 							<input type="text" class="input-icon" id="pass_log_id"  placeholder="&#xf023;    Password" name="password" path="${user.password}" required><br>
 							<input type="text" name="firstname" path="${user.firstname}" class="input-icon" placeholder="&#xf007;    First Name" style="margin-right:13%;"/>
 							<input type="text" name="lastname" path="${user.lastname}" class="input-icon" placeholder="&#xf007;    Last Name"/><br/>
-							<input placeholder="Date of Birth" class="input-icon" class="textbox-n" type="text" name="dob" value="${user.dob}" onfocus="(this.type='date')" id="date" style="margin-right: 13%;"/>
+							<input placeholder="Date of Birth" class="input-icon" class="textbox-n" type="text" name="dob" path="${user.dob}" onfocus="(this.type='date')" id="date" style="margin-right: 13%;"/>
 							<label for="Gender"class="input-icon" style="margin-right: 1%;">Gender:</label>
 							<input type="radio" name="gender" path="${user.gender}" value="male" id="male"style="margin-right: 1%;"/>Male
 							<input type="radio" name="gender" path="${user.gender}" value="female"id="female" style="margin-left: 4%;margin-right: 1%;"/>Female
 							<br>
-                            <input type="text" path="${user.mblnumber}" class="input-icon" id="phone" name="mblnumber" placeholder="&#xf095;    123-45-678" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"  style="margin-right: 13%;" required>
+                            <input type="text" path="${user.mblnumber}" class="input-icon" id="phone" name="mblnumber" placeholder="&#xf095;    9876543210" pattern="[1-9]{1}[0-9]{9}"  style="margin-right: 13%;" required>
 							<input type="text" path="${user.lnumber}"class="input-icon" placeholder="Liscence Number" name="lnumber" id="l_num" required>
 							<input type="email" path="${user.email}"class="input-icon" placeholder="&#xf0e0;    Work email" name="email" style="width: 91%;margin-bottom: 4%;" required><br>
 							
                             <input type="submit" name="submit" class="sub" value="Get started now">
                             <h4 class="message" style="margin-left: 2%;margin-top: 7%; color: gray;
-                        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Existing User? <span><a href="#" style="text-decoration: none;">Log in</a></span></h4>
+                        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Existing User? <span><a href="customerlogin" style="text-decoration: none;">Log in</a></span></h4>
                         </form>
 
             
@@ -88,13 +88,31 @@
         </div>
     </div>
     </c:when>
-    <c:when test="${mode=='login-user'}">
+    <c:when test="${mode=='mode_customerregistered'}">
 		<div class="right">
             <div class="right-cont1">
                     <div class="form1">
                       
 
-                        <form action="loginuser"  method="POST" style="margin-top: 25%;">
+                       
+                            <h1 style="text-decoration: none;">Your Customer Registration was succesfully Completed</h1>
+                        
+                    <h4 class="message" style="margin-left: 2%;margin-top: 7%; color: gray;
+                        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">If registerd? <span><a href="welcome" style="text-decoration: none;">Go to welcome page</a></span></h4>
+                        
+
+            
+        </div>
+        </div>
+    </div>
+</c:when>
+<c:when test="${mode=='mode_customerlogin'}">
+		<div class="right">
+            <div class="right-cont1">
+                    <div class="form1">
+                      
+
+                        <form action="customerloginuser"  method="POST" style="margin-top: 25%;">
                        
                             <div class="upper2">
                                 Log in
@@ -121,7 +139,7 @@
         </div>
         </div>
     </div>
-</c:when>
+    </c:when>
 </c:choose>
 
 
