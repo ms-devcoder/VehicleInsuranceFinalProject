@@ -64,10 +64,10 @@
 					  Welcome to CTS Vehicle Insurance
 				  </div>  
 				<div class="user_selection">
-					<a href="#">Customer</a>
+					<a href="customerregister">Customer</a>
 					<a href="#">Admin</a>
-					<a href="#">Policy Admin</a>
-					<a href="#">Field Officer</a>
+					<a href="policyadminregister">Policy Admin</a>
+					<a href="fieldofficerregister">Field Officer</a>
 					<a href="#">System</a>
 				</div>
         	</div>
