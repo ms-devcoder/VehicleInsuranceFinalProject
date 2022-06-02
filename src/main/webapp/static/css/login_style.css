@@ -8,7 +8,6 @@ body, html{
 
 #main-container{
     height: 100%;
-    overflow:hidden;
 }
 
 .left
@@ -20,17 +19,18 @@ body, html{
     background-position: 80% 0px;
     background-color: white;
     float:left;
+    position:fixed;
 }
 .right{
     width:50%;
-    height:100%;
+    height:auto;
     float: right;
     box-sizing: border-box;
 }
 
 
 .left-cont2{
-    height:5%;
+    height:auto;
     width: 100%;
     position: relative;
     top:97%;
@@ -48,7 +48,7 @@ body, html{
     height:80%;
     width: 80%;
     position: relative;
-    top:5%;
+    top:15%;
     left:20%;
 }
 .input-icon{
@@ -56,25 +56,19 @@ body, html{
     font-weight: 500;
     font-size: medium;
 }
-.upper1{
+.upper{
     width:70%;
     height:5%;
+    margin-top: 7%;
     font-family:Microsoft New Tai Lue; 
-    font-size: 33px;color: rgb(5, 62, 136);
-    font-weight: 900;margin-bottom:7%;
-}
-.upper2{
-    width:70%;
-    height:5%;
-    font-family:Microsoft New Tai Lue; 
-    font-size:55px;color: rgb(5, 62, 136);
-    font-weight: 900;margin-bottom:7%;
+    font-size: 55px;color: rgb(5, 62, 136);
+    font-weight: 900;margin-bottom:4%;
 }
 .form1{
     margin-top:2%;
     margin-left: 5%;
     margin-right: 13%;
-    
+    //border: 1px solid BLACK;
 }
 .form1 input,select{
     box-sizing: border-box;
@@ -84,15 +78,22 @@ body, html{
     border-color: lightgray ;
     margin-top:15px;
 }
-.field_icon {
+.field_icon,#togglePassword {
     float: right;
     margin-left: -25px;
     margin-top:110px;
     position: relative;
     color: gray;
   }
+  #togglePassword{
+	float: right;
+    margin-left: -25px;
+    margin-top:90px;
+    position: relative;
+    color: gray;
+}
 .form1 .sub{
-    margin-top: 7%;
+    margin-top: 16%;
     background-color:#58D68D;
     border-width:0;
     color: white;
@@ -105,7 +106,30 @@ body, html{
     width:65%;
     
 }
-
 .form1 .Login-form{
     display: none;
+}
+.user_selection{
+	margin-top:10%;
+}
+.user_selection a{
+	color:black;
+	padding:1%;
+	background-color: rgb(185, 214, 253);
+	margin-top:2%;
+	width:80%;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	font-weight: 500;
+	text-align: center;
+	display:block;
+	font-size:22px;
+	text-decoration:none;
+}
+.user_selection a:hover{
+	color:black;
+	border:1px solid black;
+	text-decoration: none;
+	-moz-box-shadow: 0 0 10px rgb(6, 6, 6);
+      -webkit-box-shadow: 0 0 10px rgb(28, 28, 28);
+      box-shadow: 0 0 20px rgb(0, 0, 0);
 }
