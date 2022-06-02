@@ -30,47 +30,7 @@
 		</div>
 	</div>
 
-	<div class="container" id="homediv">
-		<div class="jumbotron text-center">
-			<h1>Welcome to Tecno-tab</h1>
-			<h3>Spring Boot Videos</h3>
-		</div>
-	</div>
-
-	<div class="container text-centered">
-		<div class="alert alert-success">
-			<h4>Session 1: Spring Boot Tutorial</h4>
-		</div>
-		<iframe width="400" height="200"
-			src="https://www.youtube.com/embed/m0Xf6Bf6KFU" frameborder="0"
-			allow="autoplay; encrypted-media" allowfullscreen></iframe>
-			
-			<p> This is 1st Session of the tutorial..... </p>
-			<div class="alert alert-success">
-			<h4>Session 1: Spring Boot Tutorial</h4>
-		</div>
-		<iframe width="400" height="200"
-			src="https://www.youtube.com/embed/m0Xf6Bf6KFU" frameborder="0"
-			allow="autoplay; encrypted-media" allowfullscreen></iframe>
-			
-			<p> This is 1st Session of the tutorial..... </p>
-			<div class="alert alert-success">
-			<h4>Session 1: Spring Boot Tutorial</h4>
-		</div>
-		<iframe width="400" height="200"
-			src="https://www.youtube.com/embed/m0Xf6Bf6KFU" frameborder="0"
-			allow="autoplay; encrypted-media" allowfullscreen></iframe>
-			
-			<p> This is 1st Session of the tutorial..... </p>
-			<div class="alert alert-success">
-			<h4>Session 1: Spring Boot Tutorial</h4>
-		</div>
-		<iframe width="400" height="200"
-			src="https://www.youtube.com/embed/m0Xf6Bf6KFU" frameborder="0"
-			allow="autoplay; encrypted-media" allowfullscreen></iframe>
-			
-			<p> This is 1st Session of the tutorial..... </p>
-	</div>
+	
 
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->

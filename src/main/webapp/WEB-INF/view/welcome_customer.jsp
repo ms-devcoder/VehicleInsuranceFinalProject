@@ -74,7 +74,7 @@
 							<input type="radio" name="gender" path="${user.gender}" value="male" id="male"style="margin-right: 1%;"/>Male
 							<input type="radio" name="gender" path="${user.gender}" value="female"id="female" style="margin-left: 4%;margin-right: 1%;"/>Female
 							<br>
-                            <input type="text" path="${user.mblnumber}" class="input-icon" id="phone" name="mblnumber" placeholder="&#xf095;    123-45-678" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"  style="margin-right: 13%;" required>
+                            <input type="text" path="${user.mblnumber}" class="input-icon" id="phone" name="mblnumber" placeholder="&#xf095;    9876543210" pattern="[1-9]{1}[0-9]{9}"   style="margin-right: 13%;" required>
 							<input type="text" path="${user.lnumber}"class="input-icon" placeholder="Liscence Number" name="lnumber" id="l_num" required>
 							<input type="email" path="${user.email}"class="input-icon" placeholder="&#xf0e0;    Work email" name="email" style="width: 91%;margin-bottom: 4%;" required><br>
 							
