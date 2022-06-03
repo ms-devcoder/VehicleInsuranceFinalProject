@@ -47,7 +47,7 @@
                 </div>
             </div>
 
-
+<!-- My Assignment div starts -->
             <div id="my_ass_div">
             <h3 class="i-name">
                 My Assignments
@@ -274,6 +274,7 @@
                 </div>
             </div>
         </div>
+        <!-- My Assignments div ends -->
             <!-- logout modal -->
             <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel"
                 aria-hidden="true">
@@ -298,6 +299,7 @@
                 </div>
             </div>
 
+            <!-- Help div starts -->
             <div id="help_div" style="display: none;">
                 <h3 class="i-name">
                     Help
@@ -368,6 +370,7 @@
                     </div>
                 </div> 
             </div>
+            <!-- help div ends -->
         </section>
 
         <script>
