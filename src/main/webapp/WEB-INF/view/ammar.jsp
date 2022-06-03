@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html >
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
@@ -56,30 +54,52 @@
         </div>
 
 	
-        <c:choose>
-        <c:when test="${mode=='mode_home'}">
+    
+        
         <div class="right">
             <div class="right-cont1">
-                  <div class="upper">
-					  Welcome to CTS Vehicle Insurance
-				  </div>  
-				<div class="user_selection">
-					<a href="customerregister">Customer</a>
-					<a href="adminlogin">Admin</a>
-					<a href="policyadminregister">Policy Admin</a>
-					<a href="fieldofficerregister">Field Officer</a>
-					<a href="#">System</a>
-				</div>
-        	</div>
-    	</div>
-    </c:when>
-</c:choose>
+                    <div class="form1">
+                        <form action="ammar1" class="register-form" method="POST">
+                            <div class="upper1">
+                                Sign up
+                            </div>
+							<br/>
+							<input type="hidden" name="id" path="${user.id}" />
+							<input type="text" class="input-icon" placeholder="User Id" name="userid" path="${user.userid}" id="fname"  style="margin-right: 13%;" required>
+							<input type="text" class="input-icon" placeholder="User Id" name="name" path="${user.name}" id="fname"  style="margin-right: 13%;" required>
+							
+                            <input type="submit" name="submit" class="sub" value="Get started now">
+                            <h4 class="message" style="margin-left: 2%;margin-top: 7%; color: gray;
+                        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Existing User? <span><a href="customerlogin" style="text-decoration: none;">Log in</a></span></h4>
+                        </form>
+
+            
+        </div>
+        </div>
+    </div>
+    
+
+
+	<script>
+		const togglePassword = document.querySelector('#togglePassword');
+		const password = document.querySelector('#id_password');
+		
+		togglePassword.addEventListener('click', function (e) {
+			const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+			password.setAttribute('type', type);
+			this.classList.toggle('fa-eye-slash');
+		});
+ 
+		 $('.message a').click(function(){
+		 $('form').animate({height:"toggle",opacity:"toggle"},"slow");
+		 });
+
 
 		
-	<script>
-		
-		
 	 </script>
+	
+<!-- 	<script src="static/js/jquery-1.11.1.min.js"></script> -->
+<!-- 	<script src="static/js/bootstrap.min.js"></script> -->
 	
 </body>
 </html>

@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.modal.fieldofficer;
-
+import com.example.demo.modal.policyadmin;
 import com.example.demo.repository.fieldofficerrepo;
 
 
@@ -30,6 +30,12 @@ public class fieldservice {
 			}
 			
 			return users;
+		}
+		public void saveaccpteduser(int id)
+		{
+			fieldofficer users=userrep.findById(id).orElse(null);
+			users.setPerm("true");
+			userrep.save(users);
 		}
 		public void delete(int id) {
 			// TODO Auto-generated method stub

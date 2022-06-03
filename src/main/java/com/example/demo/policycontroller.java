@@ -11,12 +11,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.modal.policyadmin;
 import com.example.demo.userservice.Userservice;
+import com.example.demo.userservice.fieldservice;
 import com.example.demo.userservice.policyadminservice;
 @Controller
 public class policycontroller {
 
 	@Autowired
 	  private policyadminservice userser;
+	@Autowired
+	private fieldservice fieldser;
 	 
 	  @RequestMapping("/policyadminregister")
 	  public String home2(HttpServletRequest request)
@@ -31,7 +34,7 @@ public class policycontroller {
 	  {// policyadmin use =new policyadmin("sai123","pha","mohan","siddana","22-02-22","male","9553256","40@gmail.com","juniot","indic");
 	  
 		  userser.saveuser(user);
-	 
+	      
 		  request.setAttribute("mode", "mode_policyadminregistered");
 		  return "welcome_PolicyAdmin";
 	  }
@@ -46,10 +49,11 @@ public class policycontroller {
 	  }
 	  @RequestMapping("/policyadminloginuser")
 	  public String h3(@ModelAttribute() policyadmin user,BindingResult bind,HttpServletRequest request)
-	  {
-		  if(userser.findByUsernamendPassword(user.getUsername(), user.getPassword())!=null) {
+	  {policyadmin vip=userser.findByUsernamendPassword(user.getUsername(), user.getPassword());
+		  if(vip!=null&&!vip.getPerm().equals("false")) {
 			  System.out.println(userser.findByUsernamendPassword(user.getUsername(), user.getPassword()));
-				return "home";
+			  
+				return "Admin_dashboard";
 			}
 		  else
 		  {

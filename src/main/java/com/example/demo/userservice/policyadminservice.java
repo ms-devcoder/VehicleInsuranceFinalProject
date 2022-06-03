@@ -21,8 +21,15 @@ public class policyadminservice {
 	Policyrepo userrep;
 		public void saveuser(policyadmin user) {
 			// TODO Auto-generated method stub
+			
 			userrep.save(user);
 			
+		}
+		public void saveaccpteduser(int id)
+		{
+			policyadmin users=userrep.findById(id).orElse(null);
+			users.setPerm("true");
+			userrep.save(users);
 		}
 		public List<policyadmin> showusers(){
 			List<policyadmin> users = new ArrayList<policyadmin>();

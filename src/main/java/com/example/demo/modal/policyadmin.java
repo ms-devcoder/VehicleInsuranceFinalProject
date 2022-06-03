@@ -9,6 +9,8 @@ import javax.persistence.Table;
 public class policyadmin {
 	@Id
 	private int id;
+	
+	
 	private String username;
 	private String password;
 	private String firstname;
@@ -20,13 +22,22 @@ public class policyadmin {
 	private String email;
 	private String designation;
 	private String role;
+	private String category;
+	private String perm;
+	public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
+	}
 	public policyadmin()
 	{
 		
 	}
 	public policyadmin(String username, String password, String firstname, String lastname, String dob, String gender,
-			String mblnumber,String email, String designation, String role) {
+			String mblnumber,String email, String designation, String role,String category,String perm) {
 		super();
+		
 		this.username = username;
 		this.password = password;
 		this.firstname = firstname;
@@ -34,10 +45,15 @@ public class policyadmin {
 		this.dob = dob;
 		this.gender = gender;
 		this.mblnumber = mblnumber;
-		
+		this.category=category;
 		this.email = email;
 		this.designation = designation;
 		this.role = role;
+		this.perm=perm;
+	}
+	
+	public void setPerm(String perm) {
+		this.perm = perm;
 	}
 	public int getId() {
 		return id;
@@ -110,7 +126,12 @@ public class policyadmin {
 	public String toString() {
 		return "policyadmin [id=" + id + ", username=" + username + ", password=" + password + ", firstname="
 				+ firstname + ", lastname=" + lastname + ", dob=" + dob + ", gender=" + gender + ", mblnumber="
-				+ mblnumber + ", email=" + email + ", designation=" + designation + ", role=" + role + "]";
+				+ mblnumber + ", email=" + email + ", designation=" + designation + ", role=" + role + ", category="
+				+ category + ", perm=" + perm + "]";
+	}
+	public String getPerm() {
+		// TODO Auto-generated method stub
+		return perm;
 	}
 	
 	

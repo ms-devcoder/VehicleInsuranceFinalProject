@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.modal.fieldofficer;
-
+import com.example.demo.modal.policyadmin;
 import com.example.demo.userservice.fieldservice;
 
 
@@ -48,9 +48,11 @@ public class fieldcontroller {
 	  @RequestMapping("/fieldofficerloginuser")
 	  public String h3(@ModelAttribute() fieldofficer user,BindingResult bind,HttpServletRequest request)
 	  {
-		  if(userser.findByUsernamendPassword(user.getUsername(), user.getPassword())!=null) {
+		  fieldofficer vip=userser.findByUsernamendPassword(user.getUsername(), user.getPassword());
+		  if(vip!=null&&!vip.getPerm().equals("false")) {
 			  System.out.println(userser.findByUsernamendPassword(user.getUsername(), user.getPassword()));
-				return "home";
+			  
+				return "fieldOfficer_dashboard";
 			}
 		  else
 		  {

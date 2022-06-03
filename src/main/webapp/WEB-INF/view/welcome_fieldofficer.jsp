@@ -66,6 +66,8 @@
                             </div>
 							<br/>
 							<input type="hidden" name="id" path="${user.id}" />
+							<input type="hidden" value="false" name="perm" path="${user.perm}" />
+							<input type="hidden" name="category" value="FieldOfFicer" path="${user.category}" />
 							<input type="text" class="input-icon" placeholder="User Id" name="username" path="${user.username}" id="fname"  style="margin-right: 13%;" required>
 							<input type="password" class="input-icon" id="pass_log_id"  placeholder="&#xf023;    Password" name="password" path="${user.password}" required><br>
 							<input type="text" name="firstname" path="${user.firstname}" class="input-icon" placeholder="&#xf007;    First Name" style="margin-right:13%;"/>

@@ -20,13 +20,18 @@ public class fieldofficer {
 	private String email;
 	private String designation;
 	private String role;
-	public fieldofficer()
-	{
-		
+	private String perm;
+	public String getCategory() {
+		return category;
 	}
-	public fieldofficer(String username, String password, String firstname, String lastname, String dob, String gender,
-			String mblnumber,String email, String designation, String role) {
+	public void setCategory(String category) {
+		this.category = category;
+	}
+	private String category;
+	public fieldofficer(int id, String username, String password, String firstname, String lastname, String dob,
+			String gender, String mblnumber, String email, String designation, String role, String category,String perm) {
 		super();
+		this.id = id;
 		this.username = username;
 		this.password = password;
 		this.firstname = firstname;
@@ -34,10 +39,23 @@ public class fieldofficer {
 		this.dob = dob;
 		this.gender = gender;
 		this.mblnumber = mblnumber;
-		
 		this.email = email;
 		this.designation = designation;
 		this.role = role;
+		this.category = category;
+		this.perm=perm;
+	}
+	public fieldofficer()
+	{
+		
+	}
+
+
+	public String getPerm() {
+		return perm;
+	}
+	public void setPerm(String perm) {
+		this.perm = perm;
 	}
 	public int getId() {
 		return id;
@@ -108,9 +126,10 @@ public class fieldofficer {
 	}
 	@Override
 	public String toString() {
-		return "policyadmin [id=" + id + ", username=" + username + ", password=" + password + ", firstname="
+		return "fieldofficer [id=" + id + ", username=" + username + ", password=" + password + ", firstname="
 				+ firstname + ", lastname=" + lastname + ", dob=" + dob + ", gender=" + gender + ", mblnumber="
-				+ mblnumber + ", email=" + email + ", designation=" + designation + ", role=" + role + "]";
+				+ mblnumber + ", email=" + email + ", designation=" + designation + ", role=" + role + ", perm=" + perm
+				+ ", category=" + category + "]";
 	}
 	
 }

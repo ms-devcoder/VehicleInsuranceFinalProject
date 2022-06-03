@@ -55,13 +55,15 @@ public class appcontroller {
   {
 	  if(userser.findByUsernamendPassword(user.getUsername(), user.getPassword())!=null) {
 		  System.out.println(userser.findByUsernamendPassword(user.getUsername(), user.getPassword()));
-			return "home";
+		  request.setAttribute("customername", user.getUsername());
+			return "customer_dashboard";
 		}
 	  else
 	  {
 		  
 		  request.setAttribute("error", "Invalid,Username Or Password");
 		  request.setAttribute("mode", "mode_customerlogin");
+		 
 //		  System.out.println(user);
 //		  System.out.println(userser.findByUsernamendPassword(user.getUsername(), user.getPassword()));
 //		  request.setAttribute("mode", "mode_home");
@@ -80,12 +82,12 @@ public class appcontroller {
   
   
   
-//@GetMapping("/show-user")
-//	public String showAllUsers(HttpServletRequest request) {
-//	  request.setAttribute("users",userser.showusers());
-//		request.setAttribute("mode", "show-users");
-//		return "welcome";
-//	}
+@GetMapping("/show-user")
+	public String showAllUsers(HttpServletRequest request) {
+	  request.setAttribute("users",userser.showusers());
+		request.setAttribute("mode", "show-users");
+		return "welcome";
+	}
 //@RequestMapping("/delete-user")
 //	public String showAllUsers1(HttpServletRequest request,@RequestParam int id) {
 //	  userser.delete(id);
