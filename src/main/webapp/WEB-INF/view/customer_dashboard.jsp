@@ -29,6 +29,7 @@
             </div>
             <li ><i class="fas fa-scroll"></i><a href="#"> Reports </a></li>
             <li><i class="fas fa-info"></i><a onclick="help_fun()"> Help </a></li>
+            <li data-bs-toggle="modal" data-bs-target="#logoutModal"><i class="fa fa-sign-out" aria-hidden="true"></i><a href="#">Logout</a></li>
         </div>
     </section>
 
@@ -568,6 +569,31 @@
 </div>
 
 <!-- Help div ends -->
+
+
+        <!-- logout modal -->
+        <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <form action="">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="logoutModalLabel">Logout</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="logout-section modal-body">
+
+                        <h5>Are you sure you want to log out</h5>
+                        <div>
+                        <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                        <button type="submit" class="btn btn-success" data-bs-dismiss="modal">Yes</button>
+                    </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        </div>
     </section>
     
     <script>
