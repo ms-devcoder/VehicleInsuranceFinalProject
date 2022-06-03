@@ -14,6 +14,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
+
     <section id="menu">
         <div class="logo">
             <img src="../../static/images/logo.jpg"alt="">
@@ -44,7 +45,7 @@
                  </div>
             </div>
             <div class="profile">
-                <h4 id="admin-name">Customer Name</h4>
+                <h4 id="admin-name" >"${customername}"</h4>
                 <img id="admin-image" src="../../static/images/profile-image.jpg"alt="">
             </div>
         </div>

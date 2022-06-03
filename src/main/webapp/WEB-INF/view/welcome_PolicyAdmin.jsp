@@ -56,21 +56,23 @@
 
 	
         <c:choose>
-        <c:when test="${mode=='mode_home'}">
+        <c:when test="${mode=='mode_policyadminregister'}">
         <div class="right">
             <div class="right-cont1">
                     <div class="form1">
-                        <form action="save-user" class="register-form" method="POST">
+                        <form action="policyadminsave-user" class="register-form" method="POST">
                             <div class="upper">
                                 Sign up
                             </div>
 							<br/>
 							<input type="hidden" name="id" path="${user.id}" />
+							<input type="hidden" value="PolicyAdmin" name="category" path="${user.category}" />
+							<input type="hidden" value="false" name="perm" path="${user.perm}" />
 							<input type="text" class="input-icon" placeholder="User Id" name="username" path="${user.username}" id="fname"  style="margin-right: 13%;" required>
 							<input type="password" class="input-icon" id="pass_log_id"  placeholder="&#xf023;    Password" name="password" path="${user.password}" required><br>
 							<input type="text" name="firstname" path="${user.firstname}" class="input-icon" placeholder="&#xf007;    First Name" style="margin-right:13%;"/>
 							<input type="text" name="lastname" path="${user.lastname}" class="input-icon" placeholder="&#xf007;    Last Name"/><br/>
-							<input placeholder="Date of Birth" class="input-icon" class="textbox-n" type="text" name="dob" value="${user.dob}" onfocus="(this.type='date')" id="date" style="margin-right: 13%;"/>
+							<input placeholder="Date of Birth" class="input-icon" class="textbox-n" type="text" name="dob" path="${user.dob}" onfocus="(this.type='date')" id="date" style="margin-right: 13%;"/>
 							<label for="Gender"class="input-icon" style="margin-right: 1%;">Gender:</label>
 							<input type="radio" name="gender" path="${user.gender}" value="male" id="male"style="margin-right: 1%;"/>Male
 							<input type="radio" name="gender" path="${user.gender}" value="female"id="female" style="margin-left: 4%;margin-right: 1%;"/>Female
@@ -79,24 +81,24 @@
 							
 							<input type="email" path="${user.email}"class="input-icon" placeholder="&#xf0e0;    Work email" name="email" style="width: 91%;margin-bottom: 4%;" required><br>
 							
-							<select id="designation" class="input-icon" style="margin-right: 8%;" required>
+							<select id="designation" class="input-icon" name="designation" path="${user.designation}" style="margin-right: 8%;" required>
 								<option value="" disabled selected>Designation</option>
-								<option value="Junior Officer">Junior Officer</option>
-								<option value="Officer">Officer</option>
+								<option  value="Junior Officer">Junior Officer</option>
+								<option  value="Officer">Officer</option>
 								<option value="Senior Officer">Senior Officer</option>
-								<option value="Manager">Manager</option>
-								<option value="Divisional Manager">Divisional Manager</option>
+								<option  value="Manager">Manager</option>
+								<option  value="Divisional Manager">Divisional Manager</option>
 							</select>
-							<select id="role" class="input-icon" required>
-								<option value="" disabled selected>Role</option>
+							<select id="role" class="input-icon" path="${user.role}" name="role"required>
+								<option value=""disabled selected>Role</option>
 								<option value="Processing Officer">Processing Officer</option>
-								<option value="Internal Auditor">Internal Auditor</option>
-								<option value="Marketing Representative">Marketing Representative</option>
-								<option value="BG Verification officer">BG Verification officer</option>
+								<option  value="Internal Auditor">Internal Auditor</option>
+								<option  value="Marketing Representative">Marketing Representative</option>
+								<option  value="BG Verification officer">BG Verification officer</option>
 							</select>
                             <input type="submit" name="submit" class="sub" value="Get started now">
                             <h4 class="message" style="margin-left: 2%;margin-top: 7%; color: gray;
-                        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Existing User? <span><a href="#" style="text-decoration: none;">Log in</a></span></h4>
+                        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Existing User? <span><a href="policyadminlogin" style="text-decoration: none;">Log in</a></span></h4>
                         </form>
 
             
@@ -104,13 +106,31 @@
         </div>
     </div>
     </c:when>
-    <c:when test="${mode=='login-user'}">
+    <c:when test="${mode=='mode_policyadminregistered'}">
+		<div class="right">
+            <div class="right-cont1">
+                    <div class="form1">
+                      
+
+                       
+                            <h1 style="text-decoration: none;">Your PolicyAdmin Registration was succesfully Completed</h1>
+                        
+                    <h4 class="message" style="margin-left: 2%;margin-top: 7%; color: gray;
+                        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">If registerd? <span><a href="welcome" style="text-decoration: none;">Go to welcome page</a></span></h4>
+                        
+
+            
+        </div>
+        </div>
+    </div>
+</c:when>
+    <c:when test="${mode=='mode_policyadminlogin'}">
  <div class="right">
             <div class="right-cont1">
                     <div class="form1">
                       
 
-                        <form action="loginuser"  method="POST" style="margin-top: 25%;">
+                        <form action="policyadminloginuser"  method="POST" style="margin-top: 25%;">
                        
                             <div class="upper">
                                 Log in

@@ -55,11 +55,11 @@
 
 	
         <c:choose>
-        <c:when test="${mode=='mode_customerregister'}">
+        <c:when test="${mode=='mode_adminrregister'}">
         <div class="right">
             <div class="right-cont1">
                     <div class="form1">
-                        <form action="customersave-user" class="register-form" method="POST">
+                        <form action="adminsave-user" class="register-form" method="POST">
                             <div class="upper1">
                                 Sign up
                             </div>
@@ -85,7 +85,7 @@
 							
                             <input type="submit" name="submit" class="sub" value="Get started now">
                             <h4 class="message" style="margin-left: 2%;margin-top: 7%; color: gray;
-                        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Existing User? <span><a href="customerlogin" style="text-decoration: none;">Log in</a></span></h4>
+                        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Existing User? <span><a href="admilogin" style="text-decoration: none;">Log in</a></span></h4>
                         </form>
 
             
@@ -93,14 +93,14 @@
         </div>
     </div>
     </c:when>
-    <c:when test="${mode=='mode_customerregistered'}">
+    <c:when test="${mode=='mode_adminregistered'}">
 		<div class="right">
             <div class="right-cont1">
                     <div class="form1">
                       
 
                        
-                            <h1 style="text-decoration: none;">Your Customer Registration was succesfully Completed</h1>
+                            <h1 style="text-decoration: none;">Your Admin Registration was succesfully Completed</h1>
                         
                     <h4 class="message" style="margin-left: 2%;margin-top: 7%; color: gray;
                         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">If registerd? <span><a href="welcome" style="text-decoration: none;">Go to welcome page</a></span></h4>
@@ -111,13 +111,13 @@
         </div>
     </div>
 </c:when>
-<c:when test="${mode=='mode_customerlogin'}">
+<c:when test="${mode=='mode_adminlogin'}">
 		<div class="right">
             <div class="right-cont1">
                     <div class="form1">
                       
 
-                        <form action="customerloginuser"  method="POST" style="margin-top: 25%;">
+                        <form action="adminloginuser"  method="POST" style="margin-top: 25%;">
                        
                             <div class="upper2">
                                 Log in

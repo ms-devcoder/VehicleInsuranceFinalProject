@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Field Officer Dashboard</title>
+    <title>Admin Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link href="static/css/combined.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/05be7476bb.js" crossorigin="anonymous"></script>
@@ -19,7 +19,7 @@
             <h2>Vehicle Insurance</h2>
         </div>
         <div class="items">
-            <li><i class="fas fa-chart-pie"></i><a onclick="reg_req_fun()"> Registration Request </a></li>
+            <li><i class="fas fa-chart-pie"></i><a href="registrationrequests"> Registration Request </a></li>
             <li id="notification-btn"><i class="fas fa-bell" ></i> <a href="#" id="edit-drop-btn"> Notifications </a></li>
             <div class="drop-menu" id="edit-drop-menu">
                 <a onclick="NP_fun()"> New Policy Request </a>
@@ -45,17 +45,18 @@
                  </div>
             </div>
             <div class="profile">
-                <h4 id="admin-name">Admin Name</h4>
+                <h4 id="admin-name">${admin.username}</h4>
                 <img id="admin-image" src="../../static/images/profile-image.jpg"alt="">
             </div>
         </div>
 
 
         <!-- Registration Request Division starts -->
-
+        <c:choose>
+<c:when test="${mode=='mode_registrationsrequests'}">
         <div id="reg_req_div">
             <h3 class="i-name">
-                Registration Request
+              Registration Request
             </h3>
             <div class="board">
                 <table width="100%">
@@ -69,65 +70,73 @@
                         </tr>
                     </thead>
                     <tbody>
+                    <c:forEach var="user" items="${userse}">
                         <tr>
                             <td class="people">
                                 <img src="../../static/images/2.jpg" alt="">
                                 <div class="people-de">
-                                    <h5>Jhone123</h5>
-                                    <p>john@example.com</p>
+                                    <h5>${user.username}</h5>
+                                    <p>${user.email}</p>
                                 </div>
                             </td>
 
                             <td class="people-des">
-                                <h5>Junior officer</h5>
-                                <p>Processing Officer</p>
+                                <h5>${user.designation}</h5>
+                                <p>${user.role}</p>
                             </td>
 
                             <td class="user-category">
-                                <p>Policy Admin</p>
+                                <p>${user.category}</p>
                             </td>
 
                             <td class="accept">
-                                <a href="#"><button class="btn btn-success">Accept</button></a>
+                                <a href="/adminaccept-user?id=${user.id}&category=${user.category}"><button class="btn btn-success">Accept</button></a>
                             </td>
 
                             <td class="delete">
-                                <a href="#"><button class="btn btn-danger">Deny</button></a>
+                                <a href="/admindelete-user?id=${user.id}&category=${user.category}"><button class="btn btn-danger">Deny</button></a>
                             </td>
                         </tr>
 
+                       
+                        </c:forEach>
+                        <c:forEach var="user" items="${users}">
                         <tr>
                             <td class="people">
-                                <img src="../../static/images/1.jpg" alt="">
+                                <img src="../../static/images/2.jpg" alt="">
                                 <div class="people-de">
-                                    <h5>Alan67</h5>
-                                    <p>alan@example.com</p>
+                                    <h5>${user.username}</h5>
+                                    <p>${user.email}</p>
                                 </div>
                             </td>
 
                             <td class="people-des">
-                                <h5>Divisional Manager</h5>
-                                <p>Internal Auditor</p>
+                                <h5>${user.designation}</h5>
+                                <p>${user.role}</p>
                             </td>
 
                             <td class="user-category">
-                                <p>Field Officer</p>
+                                <p>${user.category}</p>
                             </td>
 
                             <td class="accept">
-                            <a href="#"><button class="btn btn-success">Accept</button></a>
+                                <a href="/adminaccept-user?id=${user.id}&category=${user.category}"><button class="btn btn-success">Accept</button></a>
                             </td>
 
                             <td class="delete">
-                                <a href="#"><button class="btn btn-danger">Deny</button></a>
+                                <a href="/admindelete-user?id=${user.id}&category=${user.category}"><button class="btn btn-danger">Deny</button></a>
                             </td>
                         </tr>
+
+                       
+                        </c:forEach>
                     </tbody>
                 </table>
             </div>      
         </div>
         
-
+</c:when>
+</c:choose>
         <!-- Registration Request Div ends -->
 
 
