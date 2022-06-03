@@ -26,7 +26,7 @@
                 <li><i class="fas fa-chart-pie"></i><a onclick="my_ass_div()"> My Assignments </a></li>
                 <li><i class="fas fa-scroll"></i><a href="#"> Reports </a></li>
                 <li href="help.html"><i class="fas fa-info"></i><a onclick="help_fun()"> Help </a></li>
-                <li data-bs-toggle="modal" data-bs-target="#logoutModal"><i class="fa fa-sign-out" aria-hidden="true"></i><a href="#">logout</a></li>
+                <li data-bs-toggle="modal" data-bs-target="#logoutModal"><i class="fa fa-sign-out" aria-hidden="true"></i><a href="#">Logout</a></li>
             </div>
         </section>
 

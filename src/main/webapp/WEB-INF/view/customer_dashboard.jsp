@@ -29,7 +29,7 @@
             </div>
             <li ><i class="fas fa-scroll"></i><a href="#"> Reports </a></li>
             <li><i class="fas fa-info"></i><a onclick="help_fun()"> Help </a></li>
-            <li data-bs-toggle="modal" data-bs-target="#logoutModal"><i class="fa fa-sign-out" aria-hidden="true"></i><a href="#">logout</a></li>
+            <li data-bs-toggle="modal" data-bs-target="#logoutModal"><i class="fa fa-sign-out" aria-hidden="true"></i><a href="#">Logout</a></li>
         </div>
     </section>
 
