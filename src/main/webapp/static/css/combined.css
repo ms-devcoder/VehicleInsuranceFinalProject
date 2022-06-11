@@ -232,6 +232,29 @@ body{
      text-align: start;
  }
 
+ .logout-section{
+     width: 94%;
+     overflow: auto;
+     background: white;
+     border-radius: 8px;
+     margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+ }
+
+ .logout-section h5{
+     font-weight: 600;
+     margin: 0px 5px 20px 5px;
+ }
+
+ .logout-section button{
+    margin: 0.25rem;
+    padding: 5px 30px 5px 30px;
+ }
+
  table{
      border-collapse: collapse;
  }
@@ -259,6 +282,14 @@ body{
      border-radius:  40px;
      color: #2b2b2b;
  }
+ 
+ .verified{
+    color: #0fad0f;
+ }
+
+ .not-verified{
+     color: rgb(255, 95, 95)
+ }
 
  /* .accept a button{
      text-decoration: none;
@@ -279,7 +310,7 @@ body{
  }
 
  .query-btn{
-     margin: 10px 0 0 30px;
+     margin-left: 30px;
  }
 
 

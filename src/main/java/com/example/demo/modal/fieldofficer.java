@@ -21,6 +21,20 @@ public class fieldofficer {
 	private String designation;
 	private String role;
 	private String perm;
+	private String concern;
+	private String reply;
+	public String getConcern() {
+		return concern;
+	}
+	public void setConcern(String concern) {
+		this.concern = concern;
+	}
+	public String getReply() {
+		return reply;
+	}
+	public void setReply(String reply) {
+		this.reply = reply;
+	}
 	public String getCategory() {
 		return category;
 	}
@@ -28,10 +42,11 @@ public class fieldofficer {
 		this.category = category;
 	}
 	private String category;
-	public fieldofficer(int id, String username, String password, String firstname, String lastname, String dob,
-			String gender, String mblnumber, String email, String designation, String role, String category,String perm) {
+	public fieldofficer(String username, String password, String firstname, String lastname, String dob,
+			String gender, String mblnumber, String email, String designation, String role, String category,String perm,String concern,String reply) {
 		super();
-		this.id = id;
+		this.concern=concern;
+		this.reply=reply;
 		this.username = username;
 		this.password = password;
 		this.firstname = firstname;
@@ -129,7 +144,7 @@ public class fieldofficer {
 		return "fieldofficer [id=" + id + ", username=" + username + ", password=" + password + ", firstname="
 				+ firstname + ", lastname=" + lastname + ", dob=" + dob + ", gender=" + gender + ", mblnumber="
 				+ mblnumber + ", email=" + email + ", designation=" + designation + ", role=" + role + ", perm=" + perm
-				+ ", category=" + category + "]";
+				+ ", concern=" + concern + ", reply=" + reply + ", category=" + category + "]";
 	}
 	
 }

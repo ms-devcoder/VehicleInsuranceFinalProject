@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>PolicyAdmin_dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link href="static/css/combined.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/05be7476bb.js" crossorigin="anonymous"></script>
@@ -23,10 +23,10 @@
                 <h2>Vehicle Insurance</h2>
             </div>
             <div class="items">
-                <li><i class="fas fa-chart-pie"></i><a onclick="my_ass_div()"> My Assignments </a></li>
+                <li><i class="fas fa-chart-pie"></i><a href="ad_to_po?username=${policyadminname}"> My Assignments </a></li>
                 <li><i class="fas fa-scroll"></i><a href="#"> Reports </a></li>
-                <li href="help.html"><i class="fas fa-info"></i><a onclick="help_fun()"> Help </a></li>
-                <li data-bs-toggle="modal" data-bs-target="#logoutModal"><i class="fa fa-sign-out" aria-hidden="true"></i><a href="#">Logout</a></li>
+                <li href="help.html"><i class="fas fa-info"></i><a href="policyadminhelp?username=${policyadminname}"> Help </a></li>
+                <li data-bs-toggle="modal" data-bs-target="#logoutModal"><i class="fa fa-sign-out" aria-hidden="true"></i><a href="pologout?username=${policyadminname }">Logout</a></li>
             </div>
         </section>
 
@@ -42,12 +42,13 @@
                     </div>
                 </div>
                 <div class="profile">
-                    <h4 id="admin-name">Policy Admin Name</h4>
+                    <h4 id="admin-name">${policyadminname}</h4>
                     <img id="admin-image" src="../../static/images/profile-image.jpg" alt="">
                 </div>
             </div>
 
-<!-- My Assignment div starts -->
+<c:choose>
+<c:when test="${mode=='ad_to_po'}">
             <div id="my_ass_div">
             <h3 class="i-name">
                 My Assignments
@@ -62,12 +63,13 @@
                         </tr>
                     </thead>
                     <tbody>
+                    <c:forEach var="adpos" items="${adpo}">
                         <tr>
                             <td class="people">
                                 <img src="../../static/images/3.jpg" alt="">
                                 <div class="people-de">
-                                    <h5>Jhone123</h5>
-                                    <p>john@example.com</p>
+                                    <h5>${adpos.username }</h5>
+                                    <p>${adpos.email }</p>
                                 </div>
                             </td>
 
@@ -78,43 +80,23 @@
                             </td>
 
                             <td class="accept">
-                                <a href="#"><button class="btn btn-success" data-bs-toggle="modal"
+                                <a href="poassignmodel?username=${adpos.username}&policyadminname=${policyadminname}"><button class="btn btn-success" data-bs-toggle="modal"
                                         data-bs-target="#assignmentModal">Proceed</button></a>
                             </td>
 
                         </tr>
-
-                        <tr>
-                            <td class="people">
-                                <img src="../../static/images/4.jpg" alt="">
-                                <div class="people-de">
-                                    <h5>Alan67</h5>
-                                    <p>alan@example.com</p>
-                                </div>
-                            </td>
-
-
-
-                            <td class="user-category">
-                                <p>Comprehensive Policy</p>
-                            </td>
-
-                            <td class="accept">
-                                <a href="#"><button class="btn btn-success" data-bs-toggle="modal"
-                                        data-bs-target="#assignmentModal">Proceed</button></a>
-                            </td>
-
-
-                        </tr>
+</c:forEach>
+                       
                     </tbody>
                 </table>
             </div>
 
-            <!-- Modal -->
-            <div class="modal fade" id="assignmentModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+      </c:when>
+      <c:when test="${mode=='poassignmodel'}">
+            <div  id="assignmentModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">
                 <div class="modal-dialog">
-                    <form action="">
+                    <form action="policyacceptance">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="assignmentModalLabel">List of Field Officer</h5>
@@ -132,34 +114,16 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
+                                     <tr>
                                             <td class="people">
                                                 <div class="people-de">
-                                                    <h5>Manufacturer Name</h5>
+                                                    <h5>Bike Proofs</h5>
                                                 </div>
                                             </td>
 
 
                                             <td class="user-category">
-                                                <p>M&M</p>
-                                            </td>
-
-                                            <td class="accept">
-                                                <i class="fa fa-check verified" aria-hidden="true"></i>
-                                            </td>
-
-                                        </tr>
-
-                                        <tr>
-                                            <td class="people">
-                                                <div class="people-de">
-                                                    <h5>Model</h5>
-                                                </div>
-                                            </td>
-
-
-                                            <td class="user-category">
-                                                <p>Bolero neo</p>
+                                                <a href="download?username=${username}">download</a><p>Open NewTab</p>
                                             </td>
 
                                             <td class="accept">
@@ -168,118 +132,50 @@
 
 
                                         </tr>
-
+                                    
+                                    
                                         <tr>
                                             <td class="people">
                                                 <div class="people-de">
-                                                    <h5>Fuel Type</h5>
+                                                    <h5>Bike Proofs&Acceptance</h5>
                                                 </div>
                                             </td>
 
 
                                             <td class="user-category">
-                                                <p>Diesel Engine</p>
+                                                <p>${condition }</p>
                                             </td>
 
                                             <td class="accept">
                                                 <i class="fa fa-check verified" aria-hidden="true"></i>
                                             </td>
 
-
                                         </tr>
 
-                                        <tr>
-                                            <td class="people">
-                                                <div class="people-de">
-                                                    <h5>VIN</h5>
-                                                </div>
-                                            </td>
+                                        <input  type="hidden" value="${username}" name="username" >
+                                        <input  type="hidden" value="${policyadminname}" name="policyadminname" >
+                                                        
 
-
-                                            <td class="user-category">
-                                                <p>1HG6BNUY39IN2</p>
-                                            </td>
-
-                                            <td class="accept">
-                                                <i class="fa fa-square not-verified"></i>
-                                            </td>
-
-
-                                        </tr>
-
-                                        <tr>
-                                            <td class="people">
-                                                <div class="people-de">
-                                                    <h5>Engine Transmission</h5>
-                                                </div>
-                                            </td>
-
-
-                                            <td class="user-category">
-                                                <p>Manual</p>
-                                            </td>
-
-                                            <td class="accept green">
-                                                <i class="fa fa-square not-verified"></i>
-                                            </td>
-
-
-                                        </tr>
-
-                                        <tr>
-                                            <td class="people">
-                                                <div class="people-de">
-                                                    <h5>Axels and Exhaust</h5>
-                                                </div>
-                                            </td>
-
-
-                                            <td class="user-category">
-                                                <p>Checked</p>
-                                            </td>
-
-                                            <td class="accept">
-                                                <i class="fa fa-square not-verified"></i>
-                                            </td>
-
-
-                                        </tr>
-
-                                        <tr>
-                                            <td class="people">
-                                                <div class="people-de">
-                                                    <h5>Wheel and Assembly</h5>
-                                                </div>
-                                            </td>
-
-
-                                            <td class="user-category">
-                                                <p>Checked</p>
-                                            </td>
-
-                                            <td class="accept">
-                                                <i class="fa fa-square not-verified"></i>
-                                            </td>
-                                        </tr>
+                                        
                                     </tbody>
                                 </table>
 
                             </div>
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-success" data-bs-dismiss="modal">Aprove</button>
-                                <button type="submit" class="btn btn-danger" data-bs-dismiss="modal">Reject</button>
+                          <button type="submit" name="po_to_adac" value="true" class="btn btn-success" data-bs-dismiss="modal">Aprove</button>
+                                <button type="submit" name="po_to_adac" value="false" class="btn btn-danger" data-bs-dismiss="modal">Reject</button>
                             </div>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-        <!-- My Assignments div ends -->
-            <!-- logout modal -->
-            <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel"
+        </c:when>
+        <c:when test="${mode=='logout'}">
+            <div  id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel"
                 aria-hidden="true">
                 <div class="modal-dialog">
-                    <form action="">
+                    
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="logoutModalLabel">Logout</h5>
@@ -290,23 +186,24 @@
 
                                 <h5>Are you sure you want to log out</h5>
                                 <div>
-                                <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-                                <button type="submit" class="btn btn-success" data-bs-dismiss="modal">Yes</button>
+                               <a href="policystay?username=${policyadminname}"> <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">No</button></a>
+                              <a href="policyadminlogin">  <button type="submit" class="btn btn-success" data-bs-dismiss="modal">Yes</button></a>
                             </div>
                             </div>
                         </div>
-                    </form>
+                    
                 </div>
             </div>
 
-            <!-- Help div starts -->
-            <div id="help_div" style="display: none;">
+       </c:when>
+       <c:when test="${mode=='help' }">
+            <div id="help_div">
                 <h3 class="i-name">
                     Help
                 </h3>
-                <button type="button" class="btn btn-success query-btn" data-bs-toggle="modal" data-bs-target="#messageModal">
+              <a href="raiseticketpo_to_ad?username=${policyadminname}">  <button type="button" class="btn btn-success query-btn" data-bs-toggle="modal" data-bs-target="#messageModal">
                     Raise a Query
-                  </button>
+                  </button></a>
                 <div class="board">
                     <table width="100%">
                         <thead>
@@ -319,37 +216,25 @@
                             <tr>
                                 <td class="people">
                                     <div class="people-de">
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia deleniti dolor amet perspiciatis porro recusandae quis nihil minima accusantium, magnam neque odio quam totam enim similique! Sapiente quis molestiae reprehenderit!</p>
+                                        <p>${concern }</p>
                                     </div>
                                 </td>
     
     
     
                                 <td class="message">
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim ratione iste, tenetur qui quas eos perspiciatis magnam consequuntur nesciunt officia esse veniam tempore quo nemo dolore provident veritatis mollitia itaque?</p>
+                                    <p>${reply }</p>
                                 </td>
     
                             </tr>
     
-                            <tr>
-                                <td class="people">                            
-                                    <div class="people-de">
-                                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam debitis est, laboriosam ab sequi doloribus ducimus exercitationem alias illo magni vitae laborum. Eveniet, enim sint sed distinctio in atque aliquam.</p>
-                                    </div>
-                                </td>
-    
-    
-    
-                                <td class="message">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam, deserunt deleniti perferendis officia recusandae soluta? Accusamus hic fugit, blanditiis quae possimus vero sunt natus recusandae culpa nisi, soluta reiciendis. Sapiente!</p>
-                                </td>
-                            </tr>
+                          
                         </tbody>
                     </table>
                 </div>
-    
-                <!-- Modal -->
-                <div class="modal fade" id="messageModal" tabindex="-1" aria-labelledby="messageModalLabel" aria-hidden="true">
+    </c:when>
+         <c:when test="${mode=='raiseticket' }">
+                <div  id="messageModal" tabindex="-1" aria-labelledby="messageModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -357,10 +242,11 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="board modal-body">
-                            <form>
+                            <form action="ticketfrompo_to_ad">
                                 <div class="mb-3">
                                   <label for="message" class="form-label">Write Your Concern</label>
-                                  <textarea name="" class="form-control" id="message" cols="30" rows="10"></textarea>
+                                  <textarea name="concern" class="form-control" id="message" cols="30" rows="10"></textarea>
+                                   <input typr="hidden" name="username" value=${policyadminname}>
                                 </div>
                                 <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Send</button>
                               </form>
@@ -370,9 +256,10 @@
                     </div>
                 </div> 
             </div>
-            <!-- help div ends -->
+          
         </section>
-
+         </c:when>
+</c:choose>
         <script>
             $('#notification-btn').click(function () {
                 $('#edit-drop-menu').toggleClass("active");

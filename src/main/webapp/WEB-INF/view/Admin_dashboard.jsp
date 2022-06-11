@@ -19,17 +19,17 @@
             <h2>Vehicle Insurance</h2>
         </div>
         <div class="items">
-            <li><i class="fas fa-chart-pie"></i><a href="registrationrequests"> Registration Request </a></li>
-            <li id="notification-btn"><i class="fas fa-bell" ></i> <a href="#" id="edit-drop-btn"> Notifications </a></li>
+             <li id="notification-btn"><i class="fas fa-bell" ></i> <a href="#" id="edit-drop-btn"> Notifications </a></li>
             <div class="drop-menu" id="edit-drop-menu">
-                <a onclick="NP_fun()"> New Policy Request </a>
-                <a  onclick="PAV_fun()">Policy After Validation </a>
-                <a onclick="ApprPol_fun()"> Approved Policy </a>
-                <a onclick="Rejec_fun()"> Rejected Policy </a>
+                <a href="registrationrequests?username=${adminname}" > Registration Request </a>
+                <a href="policyrequests?username=${adminname}"> New Policy Request </a>
+                <a href="fo_to_adac?username=${adminname}" >Policy After Validation </a>
+                <a href="po_to_adac?username=${adminname}" > Approved Policy </a>
+                <a href="fo_to_adrej&po_to_adrej?username=${adminname}"> Rejected Policy </a>
             </div>
-            <li ><i class="fas fa-scroll"></i><a href="#"> Reports </a></li>
-            <li><i class="fas fa-info"></i><a onclick="help_fun()"> Help </a></li>
-            <li data-bs-toggle="modal" data-bs-target="#logoutModal"><i class="fa fa-sign-out" aria-hidden="true"></i><a href="#">Logout</a></li>
+            <li ><i class="fas fa-scroll"></i><a href="reports?username=${adminname}"> Help Requests </a></li>
+           
+            <li data-bs-toggle="modal" data-bs-target="#logoutModal"><i class="fa fa-sign-out" aria-hidden="true"></i><a href="adminlogout?username=${adminname}">Logout</a></li>
         </div>
     </section>
 
@@ -45,15 +45,24 @@
                  </div>
             </div>
             <div class="profile">
-                <h4 id="admin-name">${admin.username}</h4>
+                <h4 id="admin-name">${adminname}</h4>
                 <img id="admin-image" src="../../static/images/profile-image.jpg"alt="">
             </div>
         </div>
 
 
-        <!-- Registration Request Division starts -->
-        <c:choose>
-<c:when test="${mode=='mode_registrationsrequests'}">
+
+
+
+
+
+
+
+
+
+     <c:choose>
+<c:when test="${mode=='pr'}">
+    
         <div id="reg_req_div">
             <h3 class="i-name">
               Registration Request
@@ -90,11 +99,11 @@
                             </td>
 
                             <td class="accept">
-                                <a href="/adminaccept-user?id=${user.id}&category=${user.category}"><button class="btn btn-success">Accept</button></a>
+                                <a href="/adminaccept-user?id=${user.id}&category=${user.category}&username=${adminname}"><button class="btn btn-success">Accept</button></a>
                             </td>
 
                             <td class="delete">
-                                <a href="/admindelete-user?id=${user.id}&category=${user.category}"><button class="btn btn-danger">Deny</button></a>
+                                <a href="/admindelete-user?id=${user.id}&category=${user.category}&username=${adminname}"><button class="btn btn-danger">Deny</button></a>
                             </td>
                         </tr>
 
@@ -120,11 +129,11 @@
                             </td>
 
                             <td class="accept">
-                                <a href="/adminaccept-user?id=${user.id}&category=${user.category}"><button class="btn btn-success">Accept</button></a>
+                                <a href="/adminaccept-user?id=${user.id}&category=${user.category}&username=${adminname}"><button class="btn btn-success">Accept</button></a>
                             </td>
 
                             <td class="delete">
-                                <a href="/admindelete-user?id=${user.id}&category=${user.category}"><button class="btn btn-danger">Deny</button></a>
+                                <a href="/admindelete-user?id=${user.id}&category=${user.category}&username=${adminname}"><button class="btn btn-danger">Deny</button></a>
                             </td>
                         </tr>
 
@@ -134,16 +143,15 @@
                 </table>
             </div>      
         </div>
-        
-</c:when>
-</c:choose>
-        <!-- Registration Request Div ends -->
+    
 
+       </c:when> 
 
-        <!-- NP Request div starts -->
+   
+       
+<c:when test="${mode=='pre' }">
 
-
-        <div id="NP_req_div" style="display: none;">
+        <div id="NP_req_div" >
             <h3 class="i-name">
                 New Policy Requests
             </h3>
@@ -158,12 +166,13 @@
                           </tr>
                      </thead>
                       <tbody>
+                      <c:forEach var="m" items="${mb}">
                           <tr>
                               <td class="people">
                                   <img src="../../static/images/3.jpg" alt="">
                                   <div class="people-de">
-                                      <h5>Jhone123</h5>
-                                      <p>john@example.com</p>
+                                      <h5>${m.username}</h5>
+                                      <p>${m.email}</p>
                                   </div>
                               </td>
     
@@ -174,37 +183,19 @@
                               </td>
     
                               <td class="accept">
-                                <a href="#"><button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#NP_Pol_Modal">Send For Verification</button></a>
+                                <a href="/ad_to_fo?id=${m.id}&username=${adminname}"><button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#NP_Pol_Modal">Send For Verification</button></a>
                               </td>
 
                           </tr>
-    
-                          <tr>
-                            <td class="people">
-                                <img src="../../static/images/4.jpg" alt="">
-                                <div class="people-de">
-                                    <h5>Alan67</h5>
-                                    <p>alan@example.com</p>
-                                </div>
-                            </td>
-    
-                            
-    
-                            <td class="user-category">
-                                <p>Comprehensive Policy</p>
-                            </td>
-    
-                            <td class="accept">
-                              <a href="#"><button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#NP_Pol_Modal">Send For Verification</button></a>
-                            </td>
-    
-            
-                        </tr>
+                          
+                         </c:forEach>
                       </tbody>
                 </table>
             </div> 
-  
-            <!-- Modal -->
+
+
+
+           
             <div class="modal fade" id="NP_Pol_Modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                 <div class="modal-content">
@@ -272,11 +263,10 @@
         </div>
 
 
-        <!-- Np Request ends -->
+     </c:when>  
+<c:when test="${mode=='vp'}">   
 
-        <!-- Policy after validation div starts -->
-
-        <div id="PAV_div" style="display: none;">
+        <div id="PAV_div">
             <h3 class="i-name">
                 Verified Policies
             </h3>
@@ -290,12 +280,13 @@
                           </tr>
                      </thead>
                       <tbody>
+                      <c:forEach var="mbes" items="${mbe}">
                           <tr>
                               <td class="people">
                                   <img src="../../static/images/1.jpg" alt="">
                                   <div class="people-de">
-                                      <h5>Jhone123</h5>
-                                      <p>john@example.com</p>
+                                      <h5>${mbes.username }</h5>
+                                      <p>${mbes.email }</p>
                                   </div>
                               </td>
     
@@ -304,35 +295,16 @@
                               </td>
     
                               <td class="accept">
-                                <a href="#"><button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#PAV_Modal">Send For Processing</button></a>
+                                <a href="ad_to_pol?id=${mbes.id}&username=${adminname}"><button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#PAV_Modal">Send For Processing</button></a>
                               </td>
 
                           </tr>
     
-                          <tr>
-                            <td class="people">
-                                <img src="../../static/images/2.jpg" alt="">
-                                <div class="people-de">
-                                    <h5>Alan67</h5>
-                                    <p>alan@example.com</p>
-                                </div>
-                            </td>
-    
-    
-                            <td class="user-category">
-                                <p>Comprehensive Policy</p>
-                            </td>
-    
-                            <td class="accept">
-                              <a href="#"><button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#PAV_Modal">Send For Processing</button></a>
-                            </td>
-    
-            
-                        </tr>
+                         </c:forEach>
                       </tbody>
                 </table>
             </div>
-            <!-- Modal -->
+           
             <div class="modal fade" id="PAV_Modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                 <div class="modal-content">
@@ -399,12 +371,13 @@
             </div>           
         </div>
 
+</c:when>
 
-        <!-- Policy after validation div ends -->
+      
+<c:when test="${mode=='ap'}">
+       
 
-        <!-- Approved Policy div starts -->
-
-        <div id="ApprPol_div" style="display: none;">
+        <div id="ApprPol_div">
             <h3 class="i-name">
                 Approved Policies
             </h3>
@@ -417,12 +390,13 @@
                           </tr>
                      </thead>
                       <tbody>
+                      <c:forEach var="apusers" items="${mber}">
                           <tr>
                               <td class="people">
                                   <img src="../../static/images/profile-image.jpg" alt="">
                                   <div class="people-de">
-                                      <h5>Jhone123</h5>
-                                      <p>john@example.com</p>
+                                      <h5>${apusers.username}</h5>
+                                      <p>${apusers.email}</p>
                                   </div>
                               </td>
 
@@ -432,32 +406,17 @@
 
                           </tr>
     
-                          <tr>
-                            <td class="people">
-                                <img src="../../static/images/profile-image.jpg" alt="">
-                                <div class="people-de">
-                                    <h5>Alan67</h5>
-                                    <p>alan@example.com</p>
-                                </div>
-                            </td>
-    
-    
-                            <td class="user-category">
-                                <p>Comprehensive Policy</p>
-                            </td>
-    
-            
-                        </tr>
+                         
+                        </c:forEach>
                       </tbody>
                 </table>
             </div>            
         </div>
 
-        <!-- Approved policy div end -->
+      </c:when> 
+<c:when test="${mode=='rjp'}">   
 
-        <!-- Rejected Policy div starts -->
-
-        <div id="RejecPol_div" style="display: none;">
+        <div id="RejecPol_div">
             <h3 class="i-name">
                 Rejected Policies
             </h3>
@@ -470,12 +429,13 @@
                           </tr>
                      </thead>
                       <tbody>
+                      <c:forEach var="rej" items="${rejs}">
                           <tr>
                               <td class="people">
                                   <img src="../../static/images/5.jpg" alt="">
                                   <div class="people-de">
-                                      <h5>Jhone123</h5>
-                                      <p>john@example.com</p>
+                                      <h5>${rej.username }</h5>
+                                      <p>${rej.email }</p>
                                   </div>
                               </td>
     
@@ -485,35 +445,18 @@
 
                           </tr>
     
-                          <tr>
-                            <td class="people">
-                                <img src="../../static/images/6.jpg" alt="">
-                                <div class="people-de">
-                                    <h5>Alan67</h5>
-                                    <p>alan@example.com</p>
-                                </div>
-                            </td>
- 
-    
-                            <td class="user-category">
-                                <p>Comprehensive Policy</p>
-                            </td>
-    
-            
-                        </tr>
+                         
+                        </c:forEach>
                       </tbody>
                 </table>
             </div>            
         </div>
 
-        <!-- Rejected policy div end -->
-
-
-        <!-- Help div starts -->
-
-        <div id="help_div" style="display: none;">
+     </c:when>
+<c:when test="${mode=='reports'}">
+        <div id="help_div">
             <h3 class="i-name">
-                New Policy Requests
+                Help Requests
             </h3>
             <div class="board">
                 <table width="100%">
@@ -525,65 +468,96 @@
                           </tr>
                      </thead>
                       <tbody>
+                      <c:forEach var="fieldhelp" items="${ fieldhelps}">
                           <tr>
                               <td class="people">
                                   <img src="../../static/images/profile-image.jpg" alt="">
                                   <div class="people-de">
-                                      <h5>Jhone123</h5>
-                                      <p>john@example.com</p>
+                                      <h5>${fieldhelp.username}   [${fieldhelp.category}]</h5>
+                                      <p>${fieldhelp.email}</p>
                                   </div>
                               </td>
     
                               
     
                               <td class="concern">
-                                  <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempore sapiente ratione maxime fugit exercitationem id debitis illo earum asperiores perferendis ullam nisi fugiat, ex odit incidunt, iusto, repellat eos velit?</p>
+                                  <p>${fieldhelp.concern }</p>
                               </td>
     
                               <td class="accept">
-                                <a href="#"><button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#help_Modal">Reply</button></a>
+                                <a href="replies?username=${fieldhelp.username}&adminname=${adminname}&category=${fieldhelp.category}"><button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#help_Modal">Reply</button></a>
                               </td>
 
                           </tr>
     
+                          </c:forEach>
+                           <c:forEach var="policyhelp" items="${ policyhelps}">
                           <tr>
-                            <td class="people">
-                                <img src="../../static/images/profile-image.jpg" alt="">
-                                <div class="people-de">
-                                    <h5>Alan67</h5>
-                                    <p>alan@example.com</p>
-                                </div>
-                            </td>
+                              <td class="people">
+                                  <img src="../../static/images/profile-image.jpg" alt="">
+                                  <div class="people-de">
+                                      <h5>${policyhelp.username}   [${policyhelp.category}]</h5>
+                                      <p>${policyhelp.email}</p>
+                                  </div>
+                              </td>
     
-                            
+                              
     
-                            <td class="concern">
-                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellat, aliquid sit eos atque facilis voluptatum, rerum doloribus quam similique officiis laborum nulla numquam, veniam voluptatem reprehenderit dolor odit vitae iure./p>
-                            </td>
+                              <td class="concern">
+                                  <p>${policyhelp.concern }</p>
+                              </td>
     
-                            <td class="accept">
-                              <a href="#"><button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#help_Modal">Reply</button></a>
-                            </td>
+                              <td class="accept">
+                                <a href="replies?username=${policyhelp.username}&adminname=${adminname}&category=${policyhelp.category}"><button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#help_Modal">Reply</button></a>
+                              </td>
+
+                          </tr>
     
-            
-                        </tr>
+                          </c:forEach>
+                           <c:forEach var="customerhelp" items="${ customerhelps}">
+                          <tr>
+                              <td class="people">
+                                  <img src="../../static/images/profile-image.jpg" alt="">
+                                  <div class="people-de">
+                                      <h5>${customerhelp.username}   [Customer]</h5>
+                                      <p>${customerhelp.email}</p>
+                                  </div>
+                              </td>
+    
+                              
+    
+                              <td class="concern">
+                                  <p>${customerhelp.concern }</p>
+                              </td>
+    
+                              <td class="accept">
+                                <a href="replies?username=${customerhelp.username}&adminname=${adminname}&category=customer"><button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#help_Modal">Reply</button></a>
+                              </td>
+
+                          </tr>
+    
+                          </c:forEach>
                       </tbody>
                 </table>
             </div> 
   
-            <!-- Modal -->
-            <div class="modal fade" id="help_Modal" tabindex="-1" aria-labelledby="messageModalLabel" aria-hidden="true">
+          </c:when>
+          <c:when test="${mode=='replies'}">
+            <div  id="help_Modal" tabindex="-1" aria-labelledby="messageModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                    <h5 class="modal-title" id="messageModalLabel">List of Field Officer</h5>
+                    <h5 class="modal-title" id="messageModalLabel">concerns</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="board modal-body">
-                        <form>
+                        <form action="repling">
                             <div class="mb-3">
                               <label for="message" class="form-label">Reply</label>
-                              <textarea name="" class="form-control" id="message" cols="30" rows="10"></textarea>
+                              <textarea name="reply" class="form-control" id="message" cols="30" rows="10"></textarea>
+                              <input type="hidden" value="${username}" name="username">
+                              <input type="hidden" value="${category}" name="category">
+                              <input type="hidden" value="${adminname}" name="adminname">
                             </div>
                             <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Send</button>
                           </form>
@@ -593,14 +567,12 @@
                 </div>
             </div> 
         </div>
-
-        <!-- Help div ends -->
-
-        <!-- logout modal -->
-        <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel"
+</c:when>
+      <c:when test="${mode=='logout'}">
+        <div id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel"
         aria-hidden="true">
         <div class="modal-dialog">
-            <form action="">
+          
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="logoutModalLabel">Logout</h5>
@@ -611,16 +583,19 @@
 
                         <h5>Are you sure you want to log out</h5>
                         <div>
-                        <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-                        <button type="submit" class="btn btn-success" data-bs-dismiss="modal">Yes</button>
+                       <a href="adminstay?username=${adminname}" > <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">No</button></a>
+                      <a href="adminlogin" ><button type="submit" class="btn btn-success" data-bs-dismiss="modal">Yes</button></a>
                     </div>
                     </div>
                 </div>
-            </form>
+          
         </div>
     </div>
     </section>
     
+   </c:when>
+        </c:choose>
+   
     <script>
         $('#notification-btn').click(function() {
             $('#edit-drop-menu').toggleClass("active");
@@ -629,54 +604,7 @@
         $('#menu-btn').click(function() {
             $('#menu').toggleClass("active");
         })
-        function reg_req_fun(){
-            document.getElementById("reg_req_div").style.display="block";
-            document.getElementById("NP_req_div").style.display="none";
-            document.getElementById("PAV_div").style.display="none";
-            document.getElementById("ApprPol_div").style.display="none";
-            document.getElementById("RejecPol_div").style.display="none";
-            document.getElementById("help_div").style.display="none";
-        }
-        function NP_fun(){
-            document.getElementById("reg_req_div").style.display="none";
-            document.getElementById("NP_req_div").style.display="block";
-            document.getElementById("PAV_div").style.display="none";
-            document.getElementById("ApprPol_div").style.display="none";
-            document.getElementById("RejecPol_div").style.display="none";
-            document.getElementById("help_div").style.display="none";
-        }
-        function PAV_fun(){
-            document.getElementById("reg_req_div").style.display="none";
-            document.getElementById("NP_req_div").style.display="none";
-            document.getElementById("PAV_div").style.display="block";
-            document.getElementById("ApprPol_div").style.display="none";
-            document.getElementById("RejecPol_div").style.display="none";
-            document.getElementById("help_div").style.display="none";
-        }
-        function ApprPol_fun(){
-            document.getElementById("reg_req_div").style.display="none";
-            document.getElementById("NP_req_div").style.display="none";
-            document.getElementById("PAV_div").style.display="none";
-            document.getElementById("ApprPol_div").style.display="block";
-            document.getElementById("RejecPol_div").style.display="none";
-            document.getElementById("help_div").style.display="none";
-        }
-        function Rejec_fun(){
-            document.getElementById("reg_req_div").style.display="none";
-            document.getElementById("NP_req_div").style.display="none";
-            document.getElementById("PAV_div").style.display="none";
-            document.getElementById("ApprPol_div").style.display="none";
-            document.getElementById("RejecPol_div").style.display="block";
-            document.getElementById("help_div").style.display="none";
-        }
-        function help_fun(){
-            document.getElementById("reg_req_div").style.display="none";
-            document.getElementById("NP_req_div").style.display="none";
-            document.getElementById("PAV_div").style.display="none";
-            document.getElementById("ApprPol_div").style.display="none";
-            document.getElementById("RejecPol_div").style.display="none";
-            document.getElementById("help_div").style.display="block";
-        }
+        
     </script>
 
 

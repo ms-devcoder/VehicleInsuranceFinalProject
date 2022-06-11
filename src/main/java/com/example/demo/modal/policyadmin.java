@@ -24,8 +24,22 @@ public class policyadmin {
 	private String role;
 	private String category;
 	private String perm;
+	private String concern;
+	private String reply;
 	public String getCategory() {
 		return category;
+	}
+	public String getConcern() {
+		return concern;
+	}
+	public void setConcern(String concern) {
+		this.concern = concern;
+	}
+	public String getReply() {
+		return reply;
+	}
+	public void setReply(String reply) {
+		this.reply = reply;
 	}
 	public void setCategory(String category) {
 		this.category = category;
@@ -35,7 +49,7 @@ public class policyadmin {
 		
 	}
 	public policyadmin(String username, String password, String firstname, String lastname, String dob, String gender,
-			String mblnumber,String email, String designation, String role,String category,String perm) {
+			String mblnumber,String email, String designation, String role,String category,String perm,String concern,String reply) {
 		super();
 		
 		this.username = username;
@@ -127,7 +141,7 @@ public class policyadmin {
 		return "policyadmin [id=" + id + ", username=" + username + ", password=" + password + ", firstname="
 				+ firstname + ", lastname=" + lastname + ", dob=" + dob + ", gender=" + gender + ", mblnumber="
 				+ mblnumber + ", email=" + email + ", designation=" + designation + ", role=" + role + ", category="
-				+ category + ", perm=" + perm + "]";
+				+ category + ", perm=" + perm + ", concern=" + concern + ", reply=" + reply + "]";
 	}
 	public String getPerm() {
 		// TODO Auto-generated method stub

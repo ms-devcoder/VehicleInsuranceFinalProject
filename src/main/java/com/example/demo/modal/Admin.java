@@ -12,6 +12,26 @@ public class Admin {
 	
 	private String username;
 	private String password;
+	private String concern;
+	private String reply;
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getConcern() {
+		return concern;
+	}
+	public void setConcern(String concern) {
+		this.concern = concern;
+	}
+	public String getReply() {
+		return reply;
+	}
+	public void setReply(String reply) {
+		this.reply = reply;
+	}
 	public String getUsername() {
 		return username;
 	}
@@ -36,7 +56,8 @@ public class Admin {
 	}
 	@Override
 	public String toString() {
-		return "Admin [username=" + username + ", password=" + password + "]";
+		return "Admin [id=" + id + ", username=" + username + ", password=" + password + ", concern=" + concern
+				+ ", reply=" + reply + "]";
 	}
 
 }

@@ -8,6 +8,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 import com.example.demo.modal.fieldofficer;
 import com.example.demo.modal.policyadmin;
 import com.example.demo.repository.fieldofficerrepo;
@@ -51,5 +52,14 @@ public class fieldservice {
 		{
 			return userrep.findByUsernameAndPassword(username,password);
 		}
+		public fieldofficer findByUsername(String username)
+		{
+			return userrep.findByUsername(username);
+		}
+		public fieldofficer findByUsernameAndMblnumberAndEmail(String username, String mblnumber, String email) {
+			// TODO Auto-generated method stub
+			return userrep.findByUsernameAndMblnumberAndEmail(username,mblnumber,email);
+		}
+		
 
 }

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.modal.User;
+import com.example.demo.modal.fieldofficer;
 import com.example.demo.modal.policyadmin;
 
 import com.example.demo.repository.Policyrepo;
@@ -52,6 +53,14 @@ public class policyadminservice {
 		public policyadmin findByUsernamendPassword(String username,String password)
 		{
 			return userrep.findByUsernameAndPassword(username,password);
+		}
+		public policyadmin findByUsername(String username)
+		{
+			return userrep.findByUsername(username);
+		}
+		
+		public policyadmin findByUsernameAndMblnumberAndEmail(String username, String mblnumber, String email) {
+			return userrep.findByUsernameAndMblnumberAndEmail(username,mblnumber,email);
 		}
 
 
