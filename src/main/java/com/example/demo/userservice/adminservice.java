@@ -45,5 +45,10 @@ public class adminservice {
 		{
 			return userrep.findByUsernameAndPassword(username,password);
 		}
+		public void saveuser(Admin us) {
+			// TODO Auto-generated method stub
+			userrep.save(us);
+			
+		}
 
 }
