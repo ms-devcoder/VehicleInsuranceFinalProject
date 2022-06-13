@@ -395,6 +395,36 @@ public class admincontroller {
 
 		
 	  }
+	  @RequestMapping("/adminuserprofile")
+	  public String home29(HttpServletRequest request,@RequestParam("username") String username)
+	  
+	  {Admin us=serv.findByUsername(username);
+	  request.setAttribute("user", us);
+		  request.setAttribute("adminname", username);
+		  request.setAttribute("mode", "userprofile");
+		  return "Admin_dashboard";
+	  }
+	  @RequestMapping("/adminedit")
+	  public String home293(HttpServletRequest request,@RequestParam("username") String username)
+	  
+	  {Admin us=serv.findByUsername(username);
+	  request.setAttribute("user", us);
+		  request.setAttribute("adminname", username);
+		  request.setAttribute("mode", "edit");
+		  return "Admin_dashboard";
+	  }
+	  @RequestMapping("/adminsavedetails")
+	  public String home2934(@ModelAttribute Admin user,HttpServletRequest request,@RequestParam("adminname") String adminname)
+	  
+	  {
+		  Admin us=serv.findByUsername(adminname);
+		 
+	  us.setUsername(user.getUsername());
+	 
+	  serv.saveuser(us);
+	  
+		  return "redirect:/adminuserprofile?username="+us.getUsername()+"";
+	  }
 
 
 	  @RequestMapping("/adminlogin")

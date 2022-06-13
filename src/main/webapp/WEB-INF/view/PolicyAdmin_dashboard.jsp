@@ -24,7 +24,7 @@
             </div>
             <div class="items">
                 <li><i class="fas fa-chart-pie"></i><a href="ad_to_po?username=${policyadminname}"> My Assignments </a></li>
-                <li><i class="fas fa-scroll"></i><a href="#"> Reports </a></li>
+               
                 <li href="help.html"><i class="fas fa-info"></i><a href="policyadminhelp?username=${policyadminname}"> Help </a></li>
                 <li data-bs-toggle="modal" data-bs-target="#logoutModal"><i class="fa fa-sign-out" aria-hidden="true"></i><a href="pologout?username=${policyadminname }">Logout</a></li>
             </div>
@@ -42,8 +42,9 @@
                     </div>
                 </div>
                 <div class="profile">
-                    <h4 id="admin-name">${policyadminname}</h4>
-                    <img id="admin-image" src="../../static/images/profile-image.jpg" alt="">
+                    <a class="nav-link" style="color: black;" href="policyadminuserprofile?username=${policyadminname}">${policyadminname} <span>
+    <img id="admin-image" src="../../static/images/profile-image.jpg"alt=""></span></a>
+     
                 </div>
             </div>
 
@@ -99,7 +100,7 @@
                     <form action="policyacceptance">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="assignmentModalLabel">List of Field Officer</h5>
+                                <h5 class="modal-title" id="assignmentModalLabel">policy Approval</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
@@ -259,6 +260,147 @@
           
         </section>
          </c:when>
+          <c:when test="${mode=='userprofile'}">
+<div  id="profie_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="max-width: 35%;" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">User Profile</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        <div class="modal-body">
+            <div class="container text-center">
+            <span>
+    
+                <img src="../../static/images/profile-image.jpg" id="photo" style="max-width: 150px;">
+                <h5 class="modal-title mt-3" id="exampleModalLabel">Name of user</h5>
+                <div id="user_details" >
+                    <table class="table">
+                        <tbody>
+                          <tr>
+                            <th scope="row">User Id</th>
+                            <td>${user.username}</td>
+                          </tr>
+                           <tr>
+                            <th scope="row">Firstname:</th>
+                            <td>${user.firstname }</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">Lastname:</th>
+                            <td>${user.lastname }</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">Dob:</th>
+                            <td>${user.dob }</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">Email</th>
+                            <td>${user.email}</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">contact:</th>
+                            <td>${user.mblnumber }</td>
+                          </tr>
+                          
+                         
+                        </tbody>
+                        
+                    </table>
+                    <div id="reset_pass_div" style="display:none;">
+                        <form>
+                            <table class="table">
+                                <tbody>
+                                  <tr>
+                                    <td>Old password</td>
+                                    <td><input type="text" name="old_pass" id="old_pass"/></td>
+                                  </tr>
+                                  <tr>
+                                    <td>New password</td>
+                                    <td><input type="password" name="new_pass" id="new_pass"/> </td>
+                                  </tr>
+                                  <tr>
+                                    <td>Confirm new Password</td>
+                                    <td><input type="password" id="cnf_pass" name="cnf_pass"></td>
+                                  </tr>
+                                </tbody>
+                                
+                            </table>
+                            <button type="submit" class="btn btn-primary mt-3">Submit</button>
+                        </form>
+                    </div>
+                </div>
+                  </div>
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <a href="policyadminedit?username=${policyadminname}"><button type="button" id="user_edit_btn" class="btn btn-primary">EDIT</button></a>
+        </div>
+    </div>
+    </div>
+</div>
+</c:when>
+                <c:when test="${mode=='edit' }">
+                <div  id="profie_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="max-width: 35%;" role="document">
+    <div class="modal-content">
+    <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit Profile</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+                <div id="user_details_edit">
+                <form action="policyadminsavedetails">
+                    <table class="table">
+                        <tbody>
+                          <tr>
+                            <th scope="row">User Id:</th>
+                            <td><input type="text" name="username" value="${user.username}" path="${user.username }" id="user_id"/></td>
+                          </tr>
+                          
+                          <tr>
+                            <th scope="row">firstname:</th>
+                            <td><input type="text" id="phone" value="${user.firstname}" path="${user.firstname}" name="firstname" placeholder="enter firstname" ></td>
+                          </tr>
+                          <tr>
+                            <th scope="row">lastname:</th>
+                            <td><input type="text" id="phone" value="${user.lastname}" path="${user.lastname}" name="lastname" placeholder="enter lastname" ></td>
+                          </tr>
+                           <tr>
+                            <th scope="row">DoB:</th>
+                            <td><input placeholder="Date of Birth" class="input-icon" class="textbox-n"
+                                                type="text" name="dob" value="${user.dob }" path="${user.dob}" onfocus="(this.type='date')"
+                                                id="date" /></td>
+                          </tr>
+                          <tr>
+                            <th scope="row">Email:</th>
+                            <td><input type="email" name="email" value="${user.email }" path="${user.email }" id="user_email"/> </td>
+                          </tr>
+                          <tr>
+                            <th scope="row">contact:</th>
+                            <td><input type="text" id="phone" value="${user.mblnumber}" path="${user.mblnumber}" name="mblnumber" placeholder="9876543210" pattern="[1-9]{1}[0-9]{9}"></td>
+                          </tr>
+                         
+                          
+                          <tr>
+                            <th scope="row">Upload Profile pic:</th>
+                            <td><input type="file" name="profile_pic" id="profile_pic"/></td>
+                            <input type="text" name="policyadminname" value="${policyadminname}"/>
+                          </tr>
+                        </tbody>
+                        
+                    </table>
+                    <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary mt-3">Submit</button>
+                    </div>
+                </div>
+                </form>
+                 </div>
+    </div>
+</div>
+                </c:when>   
 </c:choose>
         <script>
             $('#notification-btn').click(function () {

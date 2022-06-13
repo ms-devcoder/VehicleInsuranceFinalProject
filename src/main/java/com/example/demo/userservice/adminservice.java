@@ -50,5 +50,9 @@ public class adminservice {
 			userrep.save(us);
 			
 		}
+		public Admin findByUsername(String username) {
+			// TODO Auto-generated method stub
+			return userrep.findByUsername(username);
+		}
 
 }

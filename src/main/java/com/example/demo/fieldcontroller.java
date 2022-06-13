@@ -196,6 +196,42 @@ public class fieldcontroller {
 
 		
 	  }
+	  @RequestMapping("/fielduserprofile")
+	  public String home29(HttpServletRequest request,@RequestParam("username") String username)
+	  
+	  {fieldofficer us=userser.findByUsername(username);
+	  request.setAttribute("user", us);
+		  request.setAttribute("fieldofficername", username);
+		  request.setAttribute("mode", "userprofile");
+		  return "fieldOfficer_dashboard";
+	  }
+	  @RequestMapping("/fieldedit")
+	  public String home293(HttpServletRequest request,@RequestParam("username") String username)
+	  
+	  {fieldofficer us=userser.findByUsername(username);
+	  request.setAttribute("user", us);
+		  request.setAttribute("fieldofficername", username);
+		  request.setAttribute("mode", "edit");
+		  return "fieldOfficer_dashboard";
+	  }
+	  @RequestMapping("/fieldsavedetails")
+	  public String home2934(@ModelAttribute User user,HttpServletRequest request,@RequestParam("fieldofficername") String fieldofficername)
+	  
+	  {
+		  fieldofficer us=userser.findByUsername(fieldofficername);
+		 
+	  us.setUsername(user.getUsername());
+	  us.setEmail(user.getEmail());
+	  us.setMblnumber(user.getMblnumber());
+	  if(user.getDob()!=null) {
+	  us.setDob(user.getDob());}
+	  us.setFirstname(user.getFirstname());
+	  us.setLastname(user.getLastname());
+	  userser.saveuser(us);
+	  
+		  return "redirect:/fielduserprofile?username="+us.getUsername()+"";
+	  }
+	  
 
 	  @RequestMapping("/fieldofficerlogin")
 	  public String home3(HttpServletRequest request)

@@ -212,7 +212,41 @@ public class policycontroller {
 
 		
 	  }
-
+	  @RequestMapping("/policyadminuserprofile")
+	  public String home29(HttpServletRequest request,@RequestParam("username") String username)
+	  
+	  {policyadmin us=userser.findByUsername(username);
+	  request.setAttribute("user", us);
+		  request.setAttribute("policyadminname", username);
+		  request.setAttribute("mode", "userprofile");
+		  return "PolicyAdmin_dashboard";
+	  }
+	  @RequestMapping("/policyadminedit")
+	  public String home293(HttpServletRequest request,@RequestParam("username") String username)
+	  
+	  {policyadmin us=userser.findByUsername(username);
+	  request.setAttribute("user", us);
+		  request.setAttribute("policyadminname", username);
+		  request.setAttribute("mode", "edit");
+		  return "PolicyAdmin_dashboard";
+	  }
+	  @RequestMapping("/policyadminsavedetails")
+	  public String home2934(@ModelAttribute User user,HttpServletRequest request,@RequestParam("policyadminname") String policyadminname)
+	  
+	  {
+		  policyadmin us=userser.findByUsername(policyadminname);
+		 
+	  us.setUsername(user.getUsername());
+	  us.setEmail(user.getEmail());
+	  us.setMblnumber(user.getMblnumber());
+	  if(user.getDob()!=null) {
+		  us.setDob(user.getDob());}
+	  us.setFirstname(user.getFirstname());
+	  us.setLastname(user.getLastname());
+	  userser.saveuser(us);
+	  
+		  return "redirect:/policyadminuserprofile?username="+us.getUsername()+"";
+	  }
 	  
 	  
 	  @RequestMapping("/policyadminloginuser")

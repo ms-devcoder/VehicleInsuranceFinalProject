@@ -28,6 +28,14 @@ public class User {
 	private String po_to_adrej;
 	private String concern;
 	private String reply;
+	private String review;
+	
+	public String getReview() {
+		return review;
+	}
+	public void setReview(String review) {
+		this.review = review;
+	}
 	public String getConcern() {
 		return concern;
 	}
@@ -153,8 +161,9 @@ public class User {
 		
 	}
 	public User(String username, String password, String firstname, String lastname, String dob, String gender,
-			String mblnumber, String lnumber, String email,String policyreq,String policyaccept,String ad_to_fo,String fo_to_adac,String fo_to_adrej,String ad_to_po,String po_to_adac,String po_to_adrej,String concern,String reply) {
+			String mblnumber, String lnumber, String email,String policyreq,String policyaccept,String ad_to_fo,String fo_to_adac,String fo_to_adrej,String ad_to_po,String po_to_adac,String po_to_adrej,String concern,String reply,String review) {
 		super();
+		this.review=review;
 		this.username = username;
 		this.password = password;
 		this.firstname = firstname;
@@ -182,7 +191,7 @@ public class User {
 				+ ", lnumber=" + lnumber + ", email=" + email + ", policyreq=" + policyreq + ", policyaccept="
 				+ policyaccept + ", ad_to_fo=" + ad_to_fo + ", fo_to_adac=" + fo_to_adac + ", fo_to_adrej="
 				+ fo_to_adrej + ", ad_to_po=" + ad_to_po + ", po_to_adac=" + po_to_adac + ", po_to_adrej=" + po_to_adrej
-				+ ", concern=" + concern + ", reply=" + reply + "]";
+				+ ", concern=" + concern + ", reply=" + reply + ", review=" + review + "]";
 	}
 	
 	

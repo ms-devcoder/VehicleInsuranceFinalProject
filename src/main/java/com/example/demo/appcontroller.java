@@ -1,6 +1,9 @@
 package com.example.demo;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +40,42 @@ public class appcontroller {
 	  request.setAttribute("mode", "mode_customerregister");
 	  return "welcome_customer";
   }
+  @RequestMapping("/userprofile")
+  public String home29(HttpServletRequest request,@RequestParam("username") String username)
+  
+  {User us=userser.findByUsername(username);
+  request.setAttribute("user", us);
+	  request.setAttribute("customername", username);
+	  request.setAttribute("mode", "userprofile");
+	  return "ct_dashboard";
+  }
+  @RequestMapping("/edit")
+  public String home293(HttpServletRequest request,@RequestParam("username") String username)
+  
+  {User us=userser.findByUsername(username);
+  request.setAttribute("user", us);
+	  request.setAttribute("customername", username);
+	  request.setAttribute("mode", "edit");
+	  return "ct_dashboard";
+  }
+  @RequestMapping("/savedetails")
+  public String home2934(@ModelAttribute User user,HttpServletRequest request,@RequestParam("customername") String customername)
+  
+  {System.out.println(customername);
+	  User us=userser.findByUsername(customername);
+	 
+  us.setUsername(user.getUsername());
+  us.setEmail(user.getEmail());
+  us.setMblnumber(user.getMblnumber());
+  if(user.getDob()!=null) {
+	  us.setDob(user.getDob());}
+  us.setFirstname(user.getFirstname());
+  us.setLastname(user.getLastname());
+  userser.saveuser(us);
+  
+	  return "redirect:/userprofile?username="+us.getUsername()+"";
+  }
+  
   @PostMapping("/customersave-user")
   public String home3(@ModelAttribute User user,BindingResult bind,HttpServletRequest request)
   
@@ -85,6 +124,41 @@ public class appcontroller {
   request.setAttribute("customername", username);
   request.setAttribute("mode", "applypolicy");
 	  return "ct_dashboard";
+  }
+  @GetMapping("/review")
+  public String home8910(HttpServletRequest request,@RequestParam("username") String username)
+  
+  {User user=userser.findByUsername(username);
+	 
+  if(user.getPo_to_adac().equals("true"))
+	  request.setAttribute("sendreview","send");
+	  
+ 
+ List<User> reviewers=new ArrayList<>();
+ 
+		for(User p: userser.showusers())
+		{if(p.getReview()!=null)
+			reviewers.add(p);
+		}
+	  
+ 
+request.setAttribute("reviewers", reviewers);
+	  
+  request.setAttribute("customername", username);
+  request.setAttribute("mode", "review");
+	  return "ct_dashboard";
+  }
+  @PostMapping("/submitreview")
+  public String assignments109(HttpServletRequest request,@RequestParam("username") String username,@RequestParam("review") String review)
+  {System.out.println(review);
+	       User us=userser.findByUsername(username);
+	       us.setReview(review);
+	       userser.saveuser(us);
+	       System.out.println(us);
+			  request.setAttribute("customername", username);
+			 
+			  return "redirect:/review?username="+username+"";
+	  
   }
 
   @GetMapping("/customerhelp")
