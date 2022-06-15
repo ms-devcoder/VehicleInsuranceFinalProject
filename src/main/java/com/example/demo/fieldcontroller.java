@@ -27,7 +27,9 @@ public class fieldcontroller {
 	  private fieldservice userser;
 	@Autowired
 	private Userservice userservice;
-	 
+	 /*
+	  1.it will return the part of  welcome_fieldofficer named fieldoffcierregister.
+	 */
 	  @RequestMapping("/fieldofficerregister")
 	  public String home2(HttpServletRequest request)
 	  
@@ -35,6 +37,11 @@ public class fieldcontroller {
 		  request.setAttribute("mode", "mode_fieldofficerregister");
 		  return "welcome_fieldofficer";
 	  }
+	  /*
+	  1.parameters are fieldoffcier username.
+	  2.it show all customers data which sent for verification by admin
+	  3.it will return the part of  welcome_fieldofficer named myassigns.
+	 */
 	  @GetMapping("/myassignments")
 	  public String assignments(HttpServletRequest request,@RequestParam("username") String username)
 	  {
@@ -53,6 +60,10 @@ public class fieldcontroller {
 				  return "fieldOfficer_dashboard";
 		  
 	  }
+	  /*1.Parameters are fieldofficer username .
+	  2.It will give allowance to fieldofficer to raise help ticket to amdin and show concern and replies on dahboard.
+	   3.it will return the part of  fieldofficer_dashboard named help.
+	 */
 	  @GetMapping("/fieldhelp")
 	  public String assignments9(HttpServletRequest request,@RequestParam("username") String username)
 	  {
@@ -67,6 +78,10 @@ public class fieldcontroller {
 				  return "fieldOfficer_dashboard";
 		  
 	  }
+	  /*1.Parameters are fieldofficer username .
+	  2.It will give allowance to fieldofficer to raise help ticket to amdin 
+	   3.it will return the part of fieldofficer_dashboard named raiseticket.
+	 */
 	  @GetMapping("/raiseticket")
 	  public String assignments10(HttpServletRequest request,@RequestParam("username") String username)
 	  {
@@ -80,6 +95,10 @@ public class fieldcontroller {
 				  return "fieldOfficer_dashboard";
 		  
 	  }
+	  /*1.Parameters are fieldofficer username .
+	  2.It will give allowance to fieldofficer to verify proofs of customers send to amdin 
+	   3.it will return the part of fieldofficer_dashboard named myassignmodel.
+	 */
 	  @GetMapping("/myassignmodel")
 	  public String assignmentsmodel(HttpServletRequest request,@RequestParam String username,@RequestParam("fieldofficername") String fieldofficername)
 	  {
@@ -92,12 +111,16 @@ public class fieldcontroller {
 				  return "fieldOfficer_dashboard";
 		  
 	  }
+	  /*1.Parameter is fieldofficer usernname and cocern.
+	   2.It will save the concern given by fieldofficer to database
+	  3.it will return part of  fieldofficer_dashboard named help.
+	 */
 	  @RequestMapping("/ticketfromfo_to_ad")
 	  public String home39(HttpServletRequest request,@RequestParam("concern") String concern,@RequestParam("username") String username)
 	 
 
 	  {
-		  System.out.println(username);
+		 
 		  fieldofficer us=userser.findByUsername(username);
 		  us.setConcern(concern);
 		  us.setReply("");
@@ -106,6 +129,10 @@ public class fieldcontroller {
 		  
 		  return "redirect:/fieldhelp?username="+username+"";
 	  }
+	  /*1.Parameter is fieldofficer and customer usernname and result of verification.
+	   2.It will save the customer policy request proofs acceptance and rejection
+	  3.it will return part of  fieldofficer_dashboard named myassignmenyts.
+	 */
 	  @GetMapping("/bikevalidation")
 	  public String assignmentsmodel2(HttpServletRequest request,@RequestParam("fo_to_adac") String fo_to_adac,@RequestParam("username") String username,@RequestParam("fieldofficername") String fieldofficername)
 	  {User user=userservice.findByUsername(username);
@@ -120,16 +147,23 @@ public class fieldcontroller {
 				  return "redirect:/myassignments?username="+fieldofficername+"";
 		  
 	  }
+	  /*1.Parameters are fieldofficerdata.
+	  2.It will save fieldofficer data to database and throw error if user didnt registered giving credentials according to conditions. 
+	  3.it will return the part of welcome_fieldofficer named mode_fieldofficerregistered.
+	 */
 	  @PostMapping("/fieldofficersave-user")
 	  public String home3(@ModelAttribute fieldofficer user,BindingResult bind,HttpServletRequest request)
 	 
-//	   fieldofficer use =new fieldofficer("sai123","pha","mohan","siddana","22-02-22","male","9553256","40@gmail.com","juniot","indic","false","FieldOfficer");
+
 	  {
 		  userser.saveuser(user);
 	 
 		  request.setAttribute("mode", "mode_fieldofficerregistered");
 		  return "welcome_fieldofficer";
 	  }
+	  /*1.Parameter is fieldofficer usernname.
+	  2.it will return part of fieldofficer_dashboard named logout.
+	 */
 	  @GetMapping("/fologout")
 	  public String assignments10123(HttpServletRequest request,@RequestParam("username") String username)
 	  {
@@ -143,6 +177,10 @@ public class fieldcontroller {
 				  return "fieldOfficer_dashboard";
 		  
 	  }
+	  /*1.Parameter is fieldofficer usernname.
+	  2.it will remain in fieldofficer_dashboard when customer clicked no option when logout.
+	 */
+	  
 	  @RequestMapping("/fieldstay")
 		public String showAllUsers178(HttpServletRequest request,@RequestParam("username") String username) {
 			
@@ -153,6 +191,10 @@ public class fieldcontroller {
 		  
 			
 		}
+	  /*1.Parameter is fieldofficer usernname.
+	  2.it will return part of  Welcome_fieldofficer named forgotpassword.
+	 */
+
 	  @RequestMapping("/fieldforgotpassword1")
 	  public String home34(HttpServletRequest request)
 	  
@@ -160,12 +202,16 @@ public class fieldcontroller {
 		  request.setAttribute("mode", "forgotpassword");
 		  return "welcome_fieldofficer";
 	  }
+	  /*1.Parameter is  username as fieldofficer object and two same new passwords.
+	  2.It will check the username  and email and mblnumber is correct and change password
+	   3.it will return part of  Welcome_fieldofficer named forgotpassword with message of password change is done or not.
+	  */
 	  @RequestMapping("/fieldupdatepassword")
 	  public String h356(@ModelAttribute() fieldofficer user,BindingResult bind,HttpServletRequest request,@RequestParam("newpassword") String newpassword,@RequestParam("newpassword2") String newpassword2)
 	  {
-		  System.out.println(user);
+		 
 		  fieldofficer us=userser.findByUsernameAndMblnumberAndEmail(user.getUsername(),user.getMblnumber(),user.getEmail());
-		  System.out.println(us);
+		  
 		  if(us!=null) {
 			 
 			  
@@ -196,6 +242,10 @@ public class fieldcontroller {
 
 		
 	  }
+	  /*1.Parameter is fieldofficer usernname.
+	  2.It will fetch the user data and give option to edit.
+	  3.it will return the part of fieldofficer_dashboard named edit.
+	 */
 	  @RequestMapping("/fielduserprofile")
 	  public String home29(HttpServletRequest request,@RequestParam("username") String username)
 	  
@@ -205,6 +255,10 @@ public class fieldcontroller {
 		  request.setAttribute("mode", "userprofile");
 		  return "fieldOfficer_dashboard";
 	  }
+	  /*1.Parameter is fieldofficer usernname.
+	  2.It will fetch the user data and give option to edit.
+	  3.it will return the part of  fieldofficer_dashboard named edit.
+	 */
 	  @RequestMapping("/fieldedit")
 	  public String home293(HttpServletRequest request,@RequestParam("username") String username)
 	  
@@ -214,6 +268,10 @@ public class fieldcontroller {
 		  request.setAttribute("mode", "edit");
 		  return "fieldOfficer_dashboard";
 	  }
+	  /*1.Parameter is fieldofficer usernname.
+	  2.It will save edited  user data to database.
+	  3.it will return the part of  fieldofficer_dashboard named userprofile.
+	 */
 	  @RequestMapping("/fieldsavedetails")
 	  public String home2934(@ModelAttribute User user,HttpServletRequest request,@RequestParam("fieldofficername") String fieldofficername)
 	  
@@ -232,7 +290,9 @@ public class fieldcontroller {
 		  return "redirect:/fielduserprofile?username="+us.getUsername()+"";
 	  }
 	  
-
+	  /*
+	  1.it will return the part of  welocme_fieldofficer named login.
+	 */
 	  @RequestMapping("/fieldofficerlogin")
 	  public String home3(HttpServletRequest request)
 	  
@@ -241,6 +301,10 @@ public class fieldcontroller {
 		  
 		  return "welcome_fieldofficer";
 	  }
+	  /*1.Parameter is data in type of fieldofficer object.
+	  2.It will check the the credentials are correct or not and allow to login into the fieldofficer_dashboard.
+	  3.it will return the part of fieldofficer_dashboard or welcome_fieldofficer based on point 2.
+	 */
 	  @RequestMapping("/fieldofficerloginuser")
 	  public String h3(@ModelAttribute() fieldofficer user,BindingResult bind,HttpServletRequest request)
 	  {
@@ -255,9 +319,7 @@ public class fieldcontroller {
 			  
 			  request.setAttribute("error", "Invalid,Username Or Password");
 			  request.setAttribute("mode", "mode_fieldofficerlogin");
-//			  System.out.println(user);
-//			  System.out.println(userser.findByUsernamendPassword(user.getUsername(), user.getPassword()));
-//			  request.setAttribute("mode", "mode_home");
+
 			  return "welcome_fieldofficer";
 		  }
 		

@@ -35,23 +35,9 @@ public class admincontroller {
 	@Autowired
 	private Userservice userser;
 	 
-//	  @RequestMapping("/policyadminregister")
-//	  public String home2(HttpServletRequest request)
-//	  
-//	  {
-//		  request.setAttribute("mode", "mode_policyadminregister");
-//		  return "welcome_PolicyAdmin";
-//	  }
-//	  @PostMapping("/policyadminsave-user")
-//	  public String home3(@ModelAttribute policyadmin user,BindingResult bind,HttpServletRequest request)
-//	 
-//	  {// policyadmin use =new policyadmin("sai123","pha","mohan","siddana","22-02-22","male","9553256","40@gmail.com","juniot","indic");
-//	  
-//		  userser.saveuser(user);
-//	      
-//		  request.setAttribute("mode", "mode_policyadminregistered");
-//		  return "welcome_PolicyAdmin";
-//	  }
+/*1.parameter is admin usernname
+   2.It will show the all field officer and policy admin data who are waiting for approval of their login to respective dashboards
+   3.it will return the a part of admin dashboard named registration requests*/
 	@GetMapping("/registrationrequests")
 	public String showAllUsers(HttpServletRequest request,@RequestParam("username") String username) {
 		List<policyadmin> policyusers=new ArrayList<>();
@@ -59,7 +45,7 @@ public class admincontroller {
 		{
 			if(p.getPerm().equals("false"))
 			policyusers.add(p);
-			System.out.println(p);
+			
 		}
 		List<fieldofficer> fieldusers=new ArrayList<>();
 		for(fieldofficer p:fieldser.showusers())
@@ -76,7 +62,7 @@ public class admincontroller {
 			{
 				if(p.getPolicyreq().equals("true"))
 				usrs.add(p);
-				System.out.println(p);
+				
 			}
 			request.setAttribute("adminname", username);
 			 request.setAttribute("mb",usrs);
@@ -84,6 +70,9 @@ public class admincontroller {
 		return "Admin_dashboard";
 		
 	}
+	/*1.Parameter is admin usernname.
+	   2.It will show the all field officer and policy admin and Customer who raised a query for help.
+	   3.it will return the a part of admin dashboard name reports */
 	@GetMapping("/reports")
 	public String showAllUsers5(HttpServletRequest request,@RequestParam("username") String username) {
 		
@@ -119,6 +108,9 @@ public class admincontroller {
 		return "Admin_dashboard";
 		
 	}
+	/*1.parameter is admin usernname
+	  
+	   3.it will return the a part of admin dashboard named reply model which enables admin to reply to help queries*/
 	@GetMapping("/replies")
 	public String showAllUsers56(HttpServletRequest request,@RequestParam("username") String username,@RequestParam("adminname") String adminname,@RequestParam("category") String category) {
 		
@@ -134,6 +126,9 @@ public class admincontroller {
 		return "Admin_dashboard";
 		
 	}
+	/*1.parameter are username,category of user who admin is replying and adminname
+	   2.It will save date replied by admin to database of user of respected category 
+	   3.it will redirect the a part of admin dashboard named reports again*/
 	@GetMapping("/repling")
 	public String showAllUsers569(HttpServletRequest request,@RequestParam("username") String username,@RequestParam("adminname") String adminname,@RequestParam("category") String category,@RequestParam("reply") String reply) {
 		System.out.println(username+category+reply);
@@ -160,6 +155,9 @@ public class admincontroller {
 		return "redirect:/reports?username="+adminname+"";
 		
 	}
+	/*1.parameter is admin usernname
+	   2.It will show the all customer user data who applied for approval of their policy Insurance
+	   3.it will return the a part of admin dashboard named policyrequests*/
 	
 	@GetMapping("/policyrequests")
 	public String showAllUsers2(HttpServletRequest request,@RequestParam("username") String username ) {
@@ -168,12 +166,10 @@ public class admincontroller {
 		{
 			if(p.getPolicyreq().equals("true"))
 			usrs.add(p);
-			System.out.println(p);
+			
 		}
 		
-//		User usp=usrs.get(0);
-//		User use=new User("abc","abc","abc","abc","abc","abc","abc","abc","abc","false","false");
-//		System.out.println(use);
+
 		request.setAttribute("adminname", username);
 		 request.setAttribute("mb",usrs);
 		
@@ -183,6 +179,9 @@ public class admincontroller {
 		
 		
 	}
+	/*1.parameter is admin usernname and id of customer whose request is sending for verification to fieldofficer
+	   2.Again It will show the all customer data who aplied for policyrequests except the ones whose request are send for verification.
+	   3.it will return the a part of admin dashboard named policyrequests*/
 	@RequestMapping("/ad_to_fo")
 	public String showAllUsers23(HttpServletRequest request,@RequestParam int id,@RequestParam("username") String username) {
 		userser.ad_to_fo(id);
@@ -191,12 +190,10 @@ public class admincontroller {
 		{
 			if(p.getPolicyreq().equals("true"))
 			usrs.add(p);
-			System.out.println(p);
+			
 		}
 		
-//		User usp=usrs.get(0);
-//		User use=new User("abc","abc","abc","abc","abc","abc","abc","abc","abc","false","false");
-//		System.out.println(use);
+
 		request.setAttribute("adminname", username);
 		 request.setAttribute("mb",usrs);
 		
@@ -206,6 +203,10 @@ public class admincontroller {
 		
 		
 	}
+	/*1.parameter is admin usernname and id of customer whose request is sending for approval to policyadmin
+	   2.Again It will show the all customer data whose verification is verified and accepted from fieldofficer.
+	   3.it will redirect to the a part of admin dashboard named policyAfterValidation*/
+	
 	@RequestMapping("/ad_to_pol")
 	public String showAllUsers237(HttpServletRequest request,@RequestParam int id,@RequestParam("username") String username) {
 		userser.ad_to_po(id);
@@ -214,6 +215,9 @@ public class admincontroller {
 		
 		
 	}
+	/*1.Parameter is admin usernname.
+	   2.It will show the all Customer data whose policyrequest is approved from policyadmin
+	   3.it will return the a part of admin dashboard named ApprovedPolicy */
 	@RequestMapping("/po_to_adac")
 	public String showAllUsers234(HttpServletRequest request,@RequestParam("username") String username) {
 		
@@ -222,12 +226,10 @@ public class admincontroller {
 		{
 			if(p.getPo_to_adac().equals("true"))
 			usrs.add(p);
-			System.out.println(p);
+			
 		}
 		
-//		User usp=usrs.get(0);
-//		User use=new User("abc","abc","abc","abc","abc","abc","abc","abc","abc","false","false");
-//		System.out.println(use);
+
 		 request.setAttribute("mber",usrs);
 		request.setAttribute("adminname",username);
 		 request.setAttribute("mode","ap" );
@@ -236,6 +238,9 @@ public class admincontroller {
 		
 		
 	}
+	/*1.Parameter is admin usernname.
+	   2.It will show the all Customer data whose policyrequest is verified and accepted from fieldofficer
+	   3.it will return the a part of admin dashboard named PolicyAftervadlidation */
 	@RequestMapping("/fo_to_adac")
 	public String showAllUsers23456(HttpServletRequest request,@RequestParam("username") String username) {
 		
@@ -244,12 +249,9 @@ public class admincontroller {
 		{
 			if(p.getFo_to_adac().equals("true"))
 			usrs.add(p);
-			System.out.println(p);
+			
 		}
-		
-//		User usp=usrs.get(0);
-//		User use=new User("abc","abc","abc","abc","abc","abc","abc","abc","abc","false","false");
-//		System.out.println(use);
+
 		 request.setAttribute("mbe",usrs);
 		request.setAttribute("adminname", username);
 		 request.setAttribute("mode","vp" );
@@ -258,6 +260,9 @@ public class admincontroller {
 		
 		
 	}
+	/*1.Parameter is admin usernname.
+	   2.It will show the all Customer data whose policyrequest is rejected by fieldOfficer or policyadmin
+	   3.it will return the a part of admin dashboard named RejectedPolicy */
 	@RequestMapping("/fo_to_adrej&po_to_adrej")
 	public String showAllUsers2345(HttpServletRequest request,@RequestParam("username") String username) {
 		
@@ -266,12 +271,10 @@ public class admincontroller {
 		{
 			if(p.getFo_to_adrej().equals("true")||p.getPo_to_adrej().equals("true"))
 			usrs.add(p);
-			System.out.println(p);
+			
 		}
 		
-//		User usp=usrs.get(0);
-//		User use=new User("abc","abc","abc","abc","abc","abc","abc","abc","abc","false","false");
-//		System.out.println(use);
+
 		request.setAttribute("adminname", username);
 		 request.setAttribute("rejs",usrs);
 		
@@ -281,9 +284,13 @@ public class admincontroller {
 		
 		
 	}
+	/*1.parameter is admin usernname and id and  category of user either policyadmin or fieldoffficer who are waiting for approval of thie login to their respective dashboard.
+	   2.Delete the data of user if admin denied thier request and Again It will show the all field officer and policy admin data who are waiting for approval of their login to respective dashboards excepted whose requests are denied.
+   3.it will return the a part of admin dashboard named registration requests*/
+	
 	@RequestMapping("/admindelete-user")
 	public String showAllUsers1(HttpServletRequest request,@RequestParam int id,@RequestParam String category,@RequestParam("username") String username) {
-		System.out.println(category);
+		
 		
 		if(category.equals("PolicyAdmin"))
 			userserv.delete(id);
@@ -299,9 +306,12 @@ public class admincontroller {
 	  
 		
 	}
+	/*1.parameter is admin usernname and id and  category of user either policyadmin or fieldoffficer who are waiting for approval of thie login to their respective dashboard.
+	   2.Accept the request of user and Again It will show the all field officer and policy admin data who are waiting for approval of their login to respective dashboards excepted whose requests are accepted.
+3.it will return the a part of admin dashboard named registration requests*/
 	@RequestMapping("/adminaccept-user")
 	public String showAllUsers2(HttpServletRequest request,@RequestParam int id,@RequestParam String category,@RequestParam("username") String username) {
-		System.out.println(category);
+		
 		
 		if(category.equals("PolicyAdmin"))
 			userserv.saveaccpteduser(id);
@@ -330,6 +340,9 @@ public class admincontroller {
 	  
 		
 	}
+	/*1.Parameter is admin usernname.
+	   2.it will remain in admindashboard when admin clicked no option when logout.
+	  */
 	@RequestMapping("/adminstay")
 	public String showAllUsers178(HttpServletRequest request,@RequestParam("username") String username) {
 		
@@ -340,6 +353,9 @@ public class admincontroller {
 	  
 		
 	}
+	/*1.Parameter is admin usernname.
+	   2.it will return part of  admindashboard named logout.
+	  */
 	
 	@RequestMapping("/adminlogout")
 	public String showAllUsers17(HttpServletRequest request,@RequestParam("username") String username) {
@@ -351,6 +367,9 @@ public class admincontroller {
 	  
 		
 	}
+	/*1.Parameter is admin usernname.
+	   2.it will return part of  Welcome_admin named forgotpassword.
+	  */
 	
 	 @RequestMapping("/adminforgotpassword1")
 	  public String home34(HttpServletRequest request)
@@ -359,6 +378,10 @@ public class admincontroller {
 		  request.setAttribute("mode", "forgotpassword");
 		  return "welcome_Admin";
 	  }
+	 /*1.Parameter is  username as Admin object and two same new passwords.
+	  2.It will check the username  and old password is correct and change password
+	   3.it will return part of  Welcome_admin named forgotpassword with message of password change is done or not.
+	  */
 	  @RequestMapping("/adminupdatepassword")
 	  public String h356(@ModelAttribute() Admin user,BindingResult bind,HttpServletRequest request,@RequestParam("newpassword") String newpassword,@RequestParam("newpassword2") String newpassword2)
 	  {
@@ -395,6 +418,10 @@ public class admincontroller {
 
 		
 	  }
+	  /*1.Parameter is admin usernname.
+	   2.It will fetch the user data .
+	   3.it will return the part of  Admin_dashboard named userprofile.
+	  */
 	  @RequestMapping("/adminuserprofile")
 	  public String home29(HttpServletRequest request,@RequestParam("username") String username)
 	  
@@ -404,6 +431,10 @@ public class admincontroller {
 		  request.setAttribute("mode", "userprofile");
 		  return "Admin_dashboard";
 	  }
+	  /*1.Parameter is admin usernname.
+	   2.It will fetch the user data and give option to edit.
+	   3.it will return the part of  Admin_dashboard named edit.
+	  */
 	  @RequestMapping("/adminedit")
 	  public String home293(HttpServletRequest request,@RequestParam("username") String username)
 	  
@@ -413,6 +444,10 @@ public class admincontroller {
 		  request.setAttribute("mode", "edit");
 		  return "Admin_dashboard";
 	  }
+	  /*1.Parameter is admin usernname.
+	   2.It will save edited  user data to database.
+	   3.it will return the part of  Admin_dashboard named userprofile.
+	  */
 	  @RequestMapping("/adminsavedetails")
 	  public String home2934(@ModelAttribute Admin user,HttpServletRequest request,@RequestParam("adminname") String adminname)
 	  
@@ -426,7 +461,9 @@ public class admincontroller {
 		  return "redirect:/adminuserprofile?username="+us.getUsername()+"";
 	  }
 
-
+	  /*
+	   1.it will return the part of  welocme_Admin named login.
+	  */
 	  @RequestMapping("/adminlogin")
 	  public String home3(HttpServletRequest request)
 	  
@@ -435,6 +472,10 @@ public class admincontroller {
 		  
 		  return "welcome_Admin";
 	  }
+	  /*1.Parameter is data in type of Admin object.
+	   2.It will check the the credentials are correct or not and allow to login into the admin_dashboard.
+	   3.it will return the part of  Admin_dashboard or welcome_admin based on 2..
+	  */
 	  @RequestMapping("/adminloginuser")
 	  public String h3(@ModelAttribute() Admin user,BindingResult bind,HttpServletRequest request)
 	  {
@@ -450,9 +491,7 @@ public class admincontroller {
 			  
 			  request.setAttribute("error", "Invalid,Username Or Password");
 			  request.setAttribute("mode", "mode_adminlogin");
-//			  System.out.println(user);
-//			  System.out.println(userser.findByUsernamendPassword(user.getUsername(), user.getPassword()));
-//			  request.setAttribute("mode", "mode_home");
+
 			  return "welcome_Admin";
 		  }
 		

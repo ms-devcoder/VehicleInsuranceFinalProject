@@ -34,10 +34,13 @@ public class imagecontroller {
 	@Autowired
 	private Userservice userser;
 	@PostMapping("/uploadfiles")
-	
+	 /*1.Parameter is data in type of image object and multioart file.
+	  2.It will upload image to database.
+	  3.it will return the part of ct_dashboard named newpolicyrequest.
+	 */
 	public String uploadfile(HttpServletRequest request,@RequestParam("image") MultipartFile files,@ModelAttribute image userp)
 	{
-		System.out.println(userp);
+		
 		
 			 imgser.upload(files,userp.getName());
 			 User us=userser.findByUsername(userp.getName());
@@ -60,6 +63,9 @@ public class imagecontroller {
 		
 		return "redirect:/newpolicyrequest?username="+userp.getName()+"";
 	}
+	 /*
+	  1.it will return the part of ct_dashboard named newpolicies.
+	 */
 	@RequestMapping("/newpolicies")
 	public String po(HttpServletRequest request,@ModelAttribute User us)
 	
@@ -67,14 +73,10 @@ public class imagecontroller {
 		request.setAttribute("mode", "mode_newpolicies");
 		return "ct_dashboard"; 
 	}
-	@GetMapping("/allimages")
-	public String allimages(HttpServletRequest request)
-	{
-		List<image> allimages=imgser.getall();
-		request.setAttribute("images", allimages);
-		
-		return "customer_dashboard";
-	}
+	 /*1.Parameter is customer username.
+	  2.It will download the image of curresponding customer by their username
+	  
+	 */
 	@GetMapping("/download")
 	public ResponseEntity<ByteArrayResource> download(@RequestParam String username)
 	{
