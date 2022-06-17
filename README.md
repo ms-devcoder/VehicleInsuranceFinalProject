@@ -1,10 +1,10 @@
 # VehicleInsuranceFinalProject
-************for any queries u can contact me on mail--180040507ece@gmail.com---
+************for any queries  can contact me on mail--180040507ece@gmail.com---
 
 The main Purpose of project is to make a interface for customer to apply for insurance for their vehicle by submiting proofs online.
-It is my cts internship project done by me long with team where i only member worked for Backend and took help for frontend by my teammates.
+It is my cts internship project done by me along with team where i was the one who worked for Backend and took help for frontend by my teammates.
 ********************************------------***************
-** you can refer """usermanual(Highlevel pdf file)""" in for frontend operations how the system works.
+** you can refer """usermanual(Highlevel pdf file)""" in repository for frontend operations how the system works.
 ********************************-------------***********
 
 
@@ -12,10 +12,76 @@ It is my cts internship project done by me long with team where i only member wo
 Technologies Used: Java,Mysql,Jsp,Html,Css,Springboot
 Ides:Spring-Tool-Suite(Sts),Mysql WorkBench
 *****************
+<11111111111>
+Customer:
+*Customer can directly register and login to dashboard.
+Can change password on login page
+1.Userprofile:
+User can edit and view profile Details
+2.NewPolicyRequest:
+*the user can apply for policyInsurance for vehilce by submitiing required Documents and status of approval will be displayed
+*the user can view reviews given by another customers for policy nad can give review for policy after approval. 
+3.Help:
+the customer can take help from admin by raising a ticket.
+4.Logout
+</11111111111>
 
 
-For Admin who is one of the user of webpage ,you have to firstly insert username and password directly using sql query.
-*******************Database Creation*****
+
+
+<2222222>
+Admin:
+For Admin who is one of the user of webpage ,you have to firstly insert username and password directly using sql query to login dashboard.
+Can change password on login page
+**On admin dashboard:
+1.Notifacations:
+*Registration request:The request from field and policyadmin for thier login approval
+*polciyRequest:The polciyrequests fro customer
+*policyaftervalidation:the veified and accepted cutomer requests drom fieldofficer
+*policyapproved:The approved and proccessed customer detalis
+*policyrejected:the customer request rejected by both policyadmin adn fiedl officer.
+2.helpRequests:
+The helpconcerns from the all user except admin.
+3.Logout
+4.UserProfile:
+User can edit and view profile Details
+</22222222>
+
+
+
+
+<333333>
+FeildOfficer:
+*user can directly register but he can only login only after approval from admin to dashboard.
+Can change password on login page
+ONDASHBOARD:
+1.Myassignments:
+The custmor details and proofs for insurance send by admin
+2.Help:
+the fieldOfficer can take help from admin by raising a ticket.
+3.Logout
+4.UserProfile:
+User can edit and view profile Details
+</333333>
+
+
+
+<444444444>
+PolicyAdmin:
+*user can directly register but he can only login only after approval from admin to dashboard.
+Can change password on login page
+ON DASHBOARD:
+1.UserProfile:
+User can edit and view profile Details
+2.Myassignments:
+The custmor details and proofs for insurance send by admin after verified by fieldOfficer.
+3.Help:
+the fieldOfficer can take help from admin by raising a ticket.
+4.Logout
+</44444444444444>
+
+
+*******************Database Creation**********************************************************************
 CREATE DATABASE vis;
 
 USE vis;
